@@ -4,7 +4,7 @@ Bloxorz
 Model
 ------
 
-### Board
+### Class Board
     
 #### Constants
 
@@ -29,7 +29,7 @@ Model
     
     void moveTile(int direction): Moves the tile in the given direction, even if it results in an invalid board (like the tile outside the solid cells or standing straight on a weak cell)
     
-### Cell
+### Class Cell
  
 #### Methods
 
@@ -47,6 +47,31 @@ Model
     vector<Cell> getCurrentCells()
     
 
+View
+--------
 
+### Class 2DView
 
+#### Methods
+
+    void constructor(Board* board): Initialize a new view for this board.
+    
+    void refresh(): Refresh the board.
+    
+## Controller
+
+### Class KeyboardController
+
+     void run(): Runs the game and synchronizes calls between the model and the view as necessary.
+     
+
+Main
+------
+
+The `main` function of the program will look something like this:
+
+    int main() {
+        Controller c = new KeyboardController();
+        c.run();
+    }
 
