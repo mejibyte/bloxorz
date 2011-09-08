@@ -1,0 +1,197 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		32578CF1141841D40016AEB7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32578CF0141841D40016AEB7 /* main.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		32578CE1141841650016AEB7 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		32578CE3141841650016AEB7 /* Bloxorz */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Bloxorz; sourceTree = BUILT_PRODUCTS_DIR; };
+		32578CF0141841D40016AEB7 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		32578CE0141841650016AEB7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		32578CD8141841650016AEB7 = {
+			isa = PBXGroup;
+			children = (
+				32578CEF141841D40016AEB7 /* Code */,
+				32578CE4141841650016AEB7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		32578CE4141841650016AEB7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				32578CE3141841650016AEB7 /* Bloxorz */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		32578CEF141841D40016AEB7 /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				32578CF0141841D40016AEB7 /* main.cpp */,
+			);
+			path = Code;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		32578CE2141841650016AEB7 /* Bloxorz */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32578CEC141841660016AEB7 /* Build configuration list for PBXNativeTarget "Bloxorz" */;
+			buildPhases = (
+				32578CDF141841650016AEB7 /* Sources */,
+				32578CE0141841650016AEB7 /* Frameworks */,
+				32578CE1141841650016AEB7 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Bloxorz;
+			productName = Bloxorz;
+			productReference = 32578CE3141841650016AEB7 /* Bloxorz */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		32578CDA141841650016AEB7 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 32578CDD141841650016AEB7 /* Build configuration list for PBXProject "Bloxorz" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 32578CD8141841650016AEB7;
+			productRefGroup = 32578CE4141841650016AEB7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				32578CE2141841650016AEB7 /* Bloxorz */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		32578CDF141841650016AEB7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32578CF1141841D40016AEB7 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		32578CEA141841660016AEB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		32578CEB141841660016AEB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		32578CED141841660016AEB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		32578CEE141841660016AEB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		32578CDD141841650016AEB7 /* Build configuration list for PBXProject "Bloxorz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32578CEA141841660016AEB7 /* Debug */,
+				32578CEB141841660016AEB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		32578CEC141841660016AEB7 /* Build configuration list for PBXNativeTarget "Bloxorz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32578CED141841660016AEB7 /* Debug */,
+				32578CEE141841660016AEB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 32578CDA141841650016AEB7 /* Project object */;
+}
