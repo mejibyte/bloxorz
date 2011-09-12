@@ -19,7 +19,7 @@ void TwoDimensionalView::setBoard(Board someBoard) {
 void TwoDimensionalView::refresh() {
     puts("[VIEW] called refresh()");
     glClear(GL_COLOR_BUFFER_BIT);  // Clear display window.
-    
+        
     int rows = board.getRows();
     int cols = board.getCols();
     
@@ -45,6 +45,16 @@ void TwoDimensionalView::refresh() {
         printf("Tile is at <%d, %d>\n", c.getRow(), c.getColumn());
         drawRectangleAt(c.getRow(), c.getColumn(), 0, 0, 1);
     }
+    
+    glColor3f(1, 1, 1);
+    glRasterPos2f(2, 20);
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'B');
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'l');
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'o');
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'x');
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'o');
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'r');
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'z');        
     
     glFlush();
 }
