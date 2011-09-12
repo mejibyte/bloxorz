@@ -9,11 +9,47 @@
 #include <iostream>
 #include "KeyboardController.h"
 
-int main (int argc, const char * argv[]) {
+#include <OpenGL/OpenGL.h>
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#include <GLUT/glut.h>
+
+KeyboardController controller;
+
+void display(void) {
+    controller.refreshView();
+}
+
+void reshape(GLsizei w, GLsizei h) {
+}
+
+void specialKeys(int key, int x, int y) {
+}
+
+void keyboard(unsigned char key, int x, int y){
+
+}
+
+
+int main (int argc, char * argv[]) {
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+    glutInitWindowSize(AbstractView::WIDTH, AbstractView::HEIGHT);
+    glutCreateWindow("Bloxorz");
+    glutDisplayFunc(display);
+    glutReshapeFunc(reshape);
+    glutSpecialFunc(specialKeys);
+    glutKeyboardFunc(keyboard);
     
-    KeyboardController c = KeyboardController();
-    c.run();
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     
+    
+    controller = KeyboardController();
+    controller.prepare();
+
+    glutMainLoop();
+    
+    controller.cleanUp();
     return 0;
 }
 

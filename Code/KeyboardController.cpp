@@ -1,13 +1,16 @@
-//
-//  KeyboardController.cpp
-//  Bloxorz
-//
-//  Created by Andrés Mejía on 11/09/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #include "KeyboardController.h"
 
-void KeyboardController::run() {
-    printf("Running KeyboardController\n");
+void KeyboardController::prepare() {
+    printf("Preparing game from KeyboardController\n");
+    board = Board("boards/1.txt");
+    view = new TwoDimensionalView(board);
+    
+}
+
+void KeyboardController::cleanUp() {
+    delete view;
+}
+
+void KeyboardController::refreshView() {
+    view->refresh();
 }

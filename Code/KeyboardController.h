@@ -3,8 +3,11 @@
 #include <cstdio>
 
 #include "AbstractController.h"
+#include "TwoDimensionalView.h"
 
 class KeyboardController : AbstractController {
 public:
-    void run();
+    void prepare();
+    void cleanUp();
+    void refreshView();
 };

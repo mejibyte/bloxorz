@@ -12,6 +12,7 @@ public:
     enum Direction {
         Up, Right, Down, Left
     };
+    Board();
     Board(string board_file);
     int getRows();
     int getCols();
@@ -24,4 +25,8 @@ public:
     bool isLosingPosition();
     // Moves the tile in the given direction, even if it results in an invalid board (like the tile outside the solid cells or standing straight on a weak cell) 
     void moveTile(Direction direction);
+private:
+    int rows;
+    int cols;
+    vector< vector<Cell> > cells;
 };
