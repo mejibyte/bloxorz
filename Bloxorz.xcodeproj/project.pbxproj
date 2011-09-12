@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		32578CF1141841D40016AEB7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32578CF0141841D40016AEB7 /* main.cpp */; };
+		32953D7D141DA991005517FC /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32953D7B141DA991005517FC /* Board.cpp */; };
+		32953D84141DB64E005517FC /* Tile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32953D82141DB64D005517FC /* Tile.cpp */; };
+		32953D87141DB694005517FC /* Cell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32953D85141DB694005517FC /* Cell.cpp */; };
+		32953D8A141DB7E2005517FC /* AbstractView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32953D88141DB7E2005517FC /* AbstractView.cpp */; };
+		32953D8D141DB84C005517FC /* AbstractController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32953D8B141DB84C005517FC /* AbstractController.cpp */; };
+		32953D90141DB880005517FC /* KeyboardController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32953D8E141DB880005517FC /* KeyboardController.cpp */; };
+		32953D93141DB9C5005517FC /* TwoDimensionalView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32953D91141DB9C5005517FC /* TwoDimensionalView.cpp */; };
+		32953D95141DBB99005517FC /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32953D94141DBB98005517FC /* GLUT.framework */; };
+		32953D97141DBB9D005517FC /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32953D96141DBB9D005517FC /* OpenGL.framework */; };
+		32953D99141DBC0B005517FC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32953D98141DBC0B005517FC /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +35,24 @@
 /* Begin PBXFileReference section */
 		32578CE3141841650016AEB7 /* Bloxorz */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Bloxorz; sourceTree = BUILT_PRODUCTS_DIR; };
 		32578CF0141841D40016AEB7 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		32953D7B141DA991005517FC /* Board.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Board.cpp; sourceTree = "<group>"; };
+		32953D7C141DA991005517FC /* Board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
+		32953D82141DB64D005517FC /* Tile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tile.cpp; sourceTree = "<group>"; };
+		32953D83141DB64D005517FC /* Tile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tile.h; sourceTree = "<group>"; };
+		32953D85141DB694005517FC /* Cell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cell.cpp; sourceTree = "<group>"; };
+		32953D86141DB694005517FC /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
+		32953D88141DB7E2005517FC /* AbstractView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AbstractView.cpp; sourceTree = "<group>"; };
+		32953D89141DB7E2005517FC /* AbstractView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractView.h; sourceTree = "<group>"; };
+		32953D8B141DB84C005517FC /* AbstractController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AbstractController.cpp; sourceTree = "<group>"; };
+		32953D8C141DB84C005517FC /* AbstractController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractController.h; sourceTree = "<group>"; };
+		32953D8E141DB880005517FC /* KeyboardController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyboardController.cpp; sourceTree = "<group>"; };
+		32953D8F141DB880005517FC /* KeyboardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardController.h; sourceTree = "<group>"; };
+		32953D91141DB9C5005517FC /* TwoDimensionalView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TwoDimensionalView.cpp; sourceTree = "<group>"; };
+		32953D92141DB9C5005517FC /* TwoDimensionalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoDimensionalView.h; sourceTree = "<group>"; };
+		32953D94141DBB98005517FC /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		32953D96141DBB9D005517FC /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		32953D98141DBC0B005517FC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		32953D9B141DBD80005517FC /* 1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 1.txt; path = boards/1.txt; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +60,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32953D99141DBC0B005517FC /* Cocoa.framework in Frameworks */,
+				32953D97141DBB9D005517FC /* OpenGL.framework in Frameworks */,
+				32953D95141DBB99005517FC /* GLUT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +72,10 @@
 		32578CD8141841650016AEB7 = {
 			isa = PBXGroup;
 			children = (
+				32953D98141DBC0B005517FC /* Cocoa.framework */,
+				32953D96141DBB9D005517FC /* OpenGL.framework */,
+				32953D94141DBB98005517FC /* GLUT.framework */,
+				32953D9A141DBD53005517FC /* Boards */,
 				32578CEF141841D40016AEB7 /* Code */,
 				32578CE4141841650016AEB7 /* Products */,
 			);
@@ -57,8 +92,55 @@
 		32578CEF141841D40016AEB7 /* Code */ = {
 			isa = PBXGroup;
 			children = (
+				32953D71141DA908005517FC /* Views */,
+				32953D70141DA8FF005517FC /* Controllers */,
+				32953D6E141DA8FA005517FC /* Models */,
 				32578CF0141841D40016AEB7 /* main.cpp */,
 			);
+			path = Code;
+			sourceTree = "<group>";
+		};
+		32953D6E141DA8FA005517FC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				32953D7B141DA991005517FC /* Board.cpp */,
+				32953D7C141DA991005517FC /* Board.h */,
+				32953D82141DB64D005517FC /* Tile.cpp */,
+				32953D83141DB64D005517FC /* Tile.h */,
+				32953D85141DB694005517FC /* Cell.cpp */,
+				32953D86141DB694005517FC /* Cell.h */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		32953D70141DA8FF005517FC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				32953D8B141DB84C005517FC /* AbstractController.cpp */,
+				32953D8C141DB84C005517FC /* AbstractController.h */,
+				32953D8E141DB880005517FC /* KeyboardController.cpp */,
+				32953D8F141DB880005517FC /* KeyboardController.h */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		32953D71141DA908005517FC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				32953D88141DB7E2005517FC /* AbstractView.cpp */,
+				32953D89141DB7E2005517FC /* AbstractView.h */,
+				32953D91141DB9C5005517FC /* TwoDimensionalView.cpp */,
+				32953D92141DB9C5005517FC /* TwoDimensionalView.h */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		32953D9A141DBD53005517FC /* Boards */ = {
+			isa = PBXGroup;
+			children = (
+				32953D9B141DBD80005517FC /* 1.txt */,
+			);
+			name = Boards;
 			path = Code;
 			sourceTree = "<group>";
 		};
@@ -110,6 +192,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				32578CF1141841D40016AEB7 /* main.cpp in Sources */,
+				32953D7D141DA991005517FC /* Board.cpp in Sources */,
+				32953D84141DB64E005517FC /* Tile.cpp in Sources */,
+				32953D87141DB694005517FC /* Cell.cpp in Sources */,
+				32953D8A141DB7E2005517FC /* AbstractView.cpp in Sources */,
+				32953D8D141DB84C005517FC /* AbstractController.cpp in Sources */,
+				32953D90141DB880005517FC /* KeyboardController.cpp in Sources */,
+				32953D93141DB9C5005517FC /* TwoDimensionalView.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
