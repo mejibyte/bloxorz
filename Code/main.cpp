@@ -21,6 +21,7 @@ void display(void) {
 }
 
 void reshape(GLsizei w, GLsizei h) {
+    controller.reshapeView((int)w, (int)h);
 }
 
 void specialKeys(int key, int x, int y) {

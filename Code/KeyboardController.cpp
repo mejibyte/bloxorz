@@ -24,3 +24,7 @@ void KeyboardController::normalKeyPressed(unsigned char key){
     printf("%c was pressed.\n", key);
 }
 
+void KeyboardController::reshapeView(int newWidth, int newHeight){
+    view->reshape(newWidth, newHeight);
+}
+

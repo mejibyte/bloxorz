@@ -48,6 +48,9 @@ void TwoDimensionalView::refresh() {
     glFlush();
 }
 
+void TwoDimensionalView::reshape(int newWidth, int newHeight) {
+}
+
 int TwoDimensionalView::cellWidth() {
     return WIDTH / board.getCols();
 }

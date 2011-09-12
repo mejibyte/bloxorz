@@ -14,6 +14,7 @@ public:
     TwoDimensionalView(Board board);    
     void setBoard(Board board);
     void refresh();
+    void reshape(int newWidth, int newHeight);
 private:
     int cellWidth();
     int cellHeight();    

@@ -12,4 +12,5 @@ public:
     void refreshView();
     void normalKeyPressed(unsigned char key);
     void specialKeyPressed(int key);  
+    void reshapeView(int newWidth, int newHeight);    
 };
