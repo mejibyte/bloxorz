@@ -9,8 +9,8 @@ Board::Board(string filename){
     
     // TODO: implement this method
     // Reads the board from filename
-    rows = 4;
-    cols = 5;
+    rows = 8;
+    cols = 10;
     tile = Tile();
 }
 
