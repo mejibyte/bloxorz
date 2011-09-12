@@ -7,13 +7,13 @@
 //
 
 #include <iostream>
+#include "KeyboardController.h"
 
-int main (int argc, const char * argv[])
-{
-
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    std::cout << argv[0] << std::endl;
+int main (int argc, const char * argv[]) {
+    
+    KeyboardController c = KeyboardController();
+    c.run();
+    
     return 0;
 }
 
