@@ -24,10 +24,11 @@ void reshape(GLsizei w, GLsizei h) {
 }
 
 void specialKeys(int key, int x, int y) {
+    controller.specialKeyPressed(key);
 }
 
 void keyboard(unsigned char key, int x, int y){
-
+    controller.normalKeyPressed(key);
 }
 
 

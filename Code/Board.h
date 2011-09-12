@@ -29,4 +29,5 @@ private:
     int rows;
     int cols;
     vector< vector<Cell> > cells;
+    Tile tile;
 };

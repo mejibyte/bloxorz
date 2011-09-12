@@ -4,17 +4,26 @@ Cell::Cell(int row, int col, bool empty, bool weak, bool winningHole) {
     //TODO: Implement this constructor
 }
 
-bool Cell::isHollow() {
+int Cell::getRow() const {
+    return 1;
+}
+
+int Cell::getColumn() const {
+    return 1;
+}
+
+
+bool Cell::isHollow() const{
     //TODO: Implement this method    
     return (rand() % 3 == 0);
 }
 
-bool Cell::isWeak() {
+bool Cell::isWeak() const {
     //TODO: Implement this method    
     return (rand() % 3 == 0);    
 }
 
-bool Cell::isWinningHole() {
+bool Cell::isWinningHole() const {
     //TODO: Implement this method    
     return (rand() % 3 == 0);    
 }

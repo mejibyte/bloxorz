@@ -3,7 +3,7 @@
 
 TwoDimensionalView::TwoDimensionalView(){
     glMatrixMode (GL_PROJECTION);
-    gluOrtho2D(0.0, WIDTH, 0.0, HEIGHT);	// Left, Right, Bottom, Top corners    
+    gluOrtho2D(0.0, WIDTH, HEIGHT, 0.0);	// Left, Right, Bottom, Top corners    
 }
 
 TwoDimensionalView::TwoDimensionalView(Board board){
@@ -33,9 +33,18 @@ void TwoDimensionalView::refresh() {
             }else if (c.isWinningHole()){
                 r = 1, g = 0, b = 0;
             }
-            drawRectangleAt(i, j,    r, g, b);
+            drawRectangleAt(i, j,    r, g, b);            
         }
     }    
+    
+    Tile t = board.getTile();
+    vector<Cell> tileCells = t.getCurrentCells();
+    for (int k = 0; k < tileCells.size(); ++k){
+        const Cell &c = tileCells[k];
+        printf("Tile is at <%d, %d>\n", c.getRow(), c.getColumn());
+        drawRectangleAt(c.getRow(), c.getColumn(), 0, 0, 1);
+    }
+    
     glFlush();
 }
 
@@ -49,7 +58,7 @@ int TwoDimensionalView::cellHeight() {
 
 
 void TwoDimensionalView::drawRectangleAt(int row, int col,        double r, double g, double b) {
-    printf("Drawing rectangle at <%d, %d>\n", row, col);
+    printf("Drawing rectangle at <%d, %d> with color <%.2lf, %.2lf, %.2lf>\n", row, col, r, g, b);
     int w = cellWidth();
     int h = cellHeight();
     

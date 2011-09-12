@@ -14,3 +14,13 @@ void KeyboardController::cleanUp() {
 void KeyboardController::refreshView() {
     view->refresh();
 }
+void KeyboardController::specialKeyPressed(int key){
+    // TODO: Do something here.
+    printf("Special key pressed: %d.\n", key);
+}
+
+void KeyboardController::normalKeyPressed(unsigned char key){
+    // TODO: Do something here.
+    printf("%c was pressed.\n", key);
+}
+

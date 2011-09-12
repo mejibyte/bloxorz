@@ -10,4 +10,6 @@ public:
     void prepare();
     void cleanUp();
     void refreshView();
+    void normalKeyPressed(unsigned char key);
+    void specialKeyPressed(int key);  
 };
