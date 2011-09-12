@@ -43,9 +43,6 @@ int main (int argc, char * argv[]) {
     glutSpecialFunc(specialKeys);
     glutKeyboardFunc(keyboard);
     
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    
-    
     controller = KeyboardController();
     controller.prepare();
 

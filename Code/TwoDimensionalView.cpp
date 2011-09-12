@@ -2,6 +2,7 @@
 
 
 TwoDimensionalView::TwoDimensionalView(){
+    glClearColor(0, 0, 0, 1);
     glMatrixMode (GL_PROJECTION);
     gluOrtho2D(0.0, WIDTH, HEIGHT, 0.0);	// Left, Right, Bottom, Top corners    
 }
