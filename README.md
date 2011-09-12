@@ -34,7 +34,7 @@ Model
 #### Methods
 
     int getRow(), int getColumn(): Returns the row or column of this cell.
-    bool isEmpty(): Returns true if the tile can't stand up here (no cell).
+    bool isHollow(): Returns true if the tile can't stand up here (no cell).
     bool isWeak(): Returns wether the cell is weak or not.
     bool isWinningHole(): Returns wether this cell is the winning hole or not.
 
