@@ -5,6 +5,7 @@
 class Cell {
 public:
     Cell(int row, int col, bool empty, bool weak, bool winningHole);
+    Cell();
     // Returns the row of this cell.    
     int getRow() const;
     // Returns the column of this cell.    

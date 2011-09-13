@@ -7,11 +7,36 @@ Board::Board(){
 Board::Board(string filename){
     Board();
     
-    // TODO: implement this method
-    // Reads the board from filename
-    rows = 8;
-    cols = 10;
-    tile = Tile();
+    ifstream in(filename.c_str());
+    assert(in >> rows >> cols);
+    assert(rows > 0 and cols > 0);
+    cells.clear();
+    tile = Tile();    
+    for (int i = 0; i < rows; ++i){
+        string line;
+        in >> line;
+        cells.push_back(vector<Cell>(0));
+        assert(line.size() == cols);
+        for (int j = 0; j < cols; ++j){
+            char c = line[j];
+            if (c == 'S'){ // solid
+                cells.back().push_back(Cell(i, j, false, false, false));
+            }else if(c == 'H'){
+                cells.back().push_back(Cell(i, j, true, false, false));
+            }else if(c == 'K'){
+                cells.back().push_back(Cell(i, j, false, true, false));                
+            }else if(c == 'W'){
+                cells.back().push_back(Cell(i, j, false, false, true));                
+            }else if(c == 'T'){
+                cells.back().push_back(Cell(i, j, false, false, false));
+                tile.addCell(cells.back().back());
+            }else{
+                assert(false);
+            }
+        }
+    }
+    assert(cells.size() == rows);
+    assert(cells[0].size() == cols);
 }
 
 int Board::getRows() {

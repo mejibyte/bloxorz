@@ -1,5 +1,9 @@
 #include "Tile.h"
 
+Tile::Tile(){
+    cells = vector<Cell>(0);
+}
+
 bool Tile::isStandingUp() {
     // TODO: Implement this method
     return false;
@@ -18,3 +22,6 @@ vector<Cell> Tile::getCurrentCells() {
     return ans;
 }
 
+void Tile::addCell(Cell someCellWhereTheTileIs) {
+    cells.push_back(someCellWhereTheTileIs);
+}
