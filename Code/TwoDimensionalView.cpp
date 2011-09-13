@@ -56,7 +56,7 @@ void TwoDimensionalView::refresh() {
     glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'r');
     glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'z');        
     
-    glFlush();
+    glutSwapBuffers();
 }
 
 void TwoDimensionalView::reshape(int newWidth, int newHeight) {
