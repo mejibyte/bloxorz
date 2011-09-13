@@ -4,7 +4,8 @@ Cell::Cell() {
 }
 
 Cell::Cell(int row, int col, bool empty, bool weak, bool winningHole) {
-    //TODO: Implement this constructor
+    
+    
 }
 
 int Cell::getRow() const {

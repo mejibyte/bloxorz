@@ -31,12 +31,12 @@ Board::Board(string filename){
                 cells.back().push_back(Cell(i, j, false, false, false));
                 tile.addCell(cells.back().back());
             }else{
-                assert(false);
+               assert(false);
             }
         }
     }
     assert(cells.size() == rows);
-    assert(cells[0].size() == cols);
+    assert(cells.size() == cols);
 }
 
 int Board::getRows() {
