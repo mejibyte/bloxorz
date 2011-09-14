@@ -9,6 +9,7 @@
 #include <cstdio>
 #include <string>
 #include <sstream>
+#include <sys/stat.h>
 
 #include "AbstractController.h"
 #include "TwoDimensionalView.h"
@@ -26,5 +27,5 @@ public:
     void specialKeyPressed(int key);  
     void reshapeView(int newWidth, int newHeight);
 private:
-    void loadBoard(int boardNumber);
+    bool loadBoard(int boardNumber);
 };

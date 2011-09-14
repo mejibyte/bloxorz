@@ -27,6 +27,15 @@ void KeyboardController::specialKeyPressed(int key){
     printf("Special key pressed: %d.\n", key);
     if (board.isWinningPosition()){
         printf("[CONTROLLER] Winning position! Load next level\n");
+        if (loadBoard(++currentBoard)){
+            view->setBoard(board);
+            refreshView();            
+        } else {
+            // End of game
+            view->clearMessage();
+            view->setMessage("Congratulations, you completed the game! Now go get a beer. Press ESC to exit.");
+        }
+        
     } else if (board.isLosingPosition()) {
         printf("[CONTROLLER] Losing position! Restart level\n");
         loadBoard(currentBoard);
@@ -90,9 +99,16 @@ void KeyboardController::reshapeView(int newWidth, int newHeight){
     view->reshape(newWidth, newHeight);
 }
 
-void KeyboardController::loadBoard(int boardNumber) {
+bool KeyboardController::loadBoard(int boardNumber) {
     stringstream sin;
     sin << boardsDir << boardNumber << ".txt";
-    printf("[CONTROLLER] Loading board %s\n", sin.str().c_str());
-    board = Board(sin.str());
+    
+    struct stat st;
+    if(stat(sin.str().c_str(), &st) == 0) {
+        printf("[CONTROLLER] Loading board %s\n", sin.str().c_str());
+        board = Board(sin.str());
+        return true;
+    } else {
+        return false;
+    }
 }
