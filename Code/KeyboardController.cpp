@@ -30,10 +30,6 @@ void KeyboardController::specialKeyPressed(int key){
         if (loadBoard(++currentBoard)){
             view->setBoard(board);
             refreshView();            
-        } else {
-            // End of game
-            view->clearMessage();
-            view->setMessage("Congratulations, you completed the game! Now go get a beer. Press ESC to exit.");
         }
         
     } else if (board.isLosingPosition()) {
@@ -65,7 +61,12 @@ void KeyboardController::specialKeyPressed(int key){
             view->setMessage("You lost! Press any key to restart.");            
         }
         if (board.isWinningPosition()) {
-            view->setMessage("Good job! Press any key to load next level.");
+            if (isThereNextLevel()) {
+                view->setMessage("Good job! Press any key to load next level.");
+            } else {
+                // End of game
+                view->setMessage("Congratulations, you completed the game! Now go get a beer. Press ESC to exit.");                
+            }
         }
     }
 }
@@ -111,4 +112,11 @@ bool KeyboardController::loadBoard(int boardNumber) {
     } else {
         return false;
     }
+}
+
+bool KeyboardController::isThereNextLevel() {
+    stringstream sin;
+    sin << boardsDir << currentBoard + 1 << ".txt";
+    struct stat st;
+    return (stat(sin.str().c_str(), &st) == 0);
 }

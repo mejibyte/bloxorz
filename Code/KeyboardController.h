@@ -28,4 +28,5 @@ public:
     void reshapeView(int newWidth, int newHeight);
 private:
     bool loadBoard(int boardNumber);
+    bool isThereNextLevel();
 };
