@@ -4,7 +4,7 @@
 
 class Cell {
 public:
-    Cell(int row, int col, bool empty, bool weak, bool winningHole);
+    Cell(int row, int col, bool hollow, bool weak, bool winningHole);
     Cell();
     // Returns the row of this cell.    
     int getRow() const;
@@ -16,4 +16,7 @@ public:
     bool isWeak() const;
     // Returns wether this cell is the winning hole or not.
     bool isWinningHole() const;
+private:
+    int row, col;
+    bool hollow, weak, winningHole;
 };

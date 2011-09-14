@@ -72,7 +72,7 @@ int TwoDimensionalView::cellHeight() {
 
 
 void TwoDimensionalView::drawRectangleAt(int row, int col,        double r, double g, double b) {
-    printf("Drawing rectangle at <%d, %d> with color <%.2lf, %.2lf, %.2lf>\n", row, col, r, g, b);
+    printf("[VIEW] Drawing rectangle at <%d, %d> with color <%.2lf, %.2lf, %.2lf>\n", row, col, r, g, b);
     int w = cellWidth();
     int h = cellHeight();
     

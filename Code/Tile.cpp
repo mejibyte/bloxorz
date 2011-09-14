@@ -5,21 +5,15 @@ Tile::Tile(){
 }
 
 bool Tile::isStandingUp() {
-    // TODO: Implement this method
-    return false;
+    return cells.size() == 1;
 }
 
-bool isLayingDown() {
-    // TODO: Implement this method
-    return true;
+bool Tile::isLayingDown() {
+    return cells.size() > 1;
 }
 
 vector<Cell> Tile::getCurrentCells() {
-    // TODO: Implement this method
-    vector<Cell> ans;
-    ans.push_back(Cell(1, 1, false, false, false));
-    ans.push_back(Cell(1, 2, false, false, false));
-    return ans;
+    return cells;
 }
 
 void Tile::addCell(Cell someCellWhereTheTileIs) {
