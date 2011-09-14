@@ -1,12 +1,15 @@
 #pragma once
 
+#include <string>
+
 #include "Board.h"
 #include "AbstractView.h"
 
+using namespace std;
+
 class AbstractController {
 public:    
-    // Runs the game and synchronizes calls between the model and the view as necessary.    
-    virtual void prepare() = 0;
+    // Runs the game and synchronizes calls between the model and the view as necessary.
     virtual void refreshView() = 0;
     virtual void reshapeView(int newWidth, int newHeight) = 0;    
     virtual void normalKeyPressed(unsigned char key) = 0;
@@ -15,4 +18,5 @@ public:
 protected:
     Board board;
     AbstractView * view;
+    string boardsDir; // Path to the folder where the boards are, i.e ~/Games/Bloxorz/boards/
 };

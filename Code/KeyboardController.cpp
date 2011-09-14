@@ -1,11 +1,18 @@
 #include "KeyboardController.h"
 
+KeyboardController::KeyboardController() {
+    view = NULL;
+}
 
-void KeyboardController::prepare() {
-    printf("Preparing game from KeyboardController\n");
-    board = Board("./boards/1.txt");
-    view = new TwoDimensionalView(board);
+KeyboardController::KeyboardController(string boardsDir) {
+    printf("[CONTROLLER] Creating KeyboardController\n");
     
+    assert(boardsDir.size() > 0);
+    if (boardsDir[boardsDir.size() - 1] != '/') boardsDir += '/';
+    this->boardsDir = boardsDir;
+    
+    board = Board(this->boardsDir + "1.txt");
+    view = new TwoDimensionalView(board);    
 }
 
 void KeyboardController::cleanUp() {

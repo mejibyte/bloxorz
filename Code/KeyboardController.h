@@ -7,13 +7,18 @@
 #endif 
 
 #include <cstdio>
+#include <string>
 
 #include "AbstractController.h"
 #include "TwoDimensionalView.h"
 
+using namespace std;
+
 class KeyboardController : AbstractController {
 public:
-    void prepare();
+    KeyboardController();
+    KeyboardController(string boardsDir);
+    
     void cleanUp();
     void refreshView();
     void normalKeyPressed(unsigned char key);
