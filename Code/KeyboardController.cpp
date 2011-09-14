@@ -25,7 +25,14 @@ void KeyboardController::refreshView() {
 }
 void KeyboardController::specialKeyPressed(int key){
     printf("Special key pressed: %d.\n", key);
-    if (!board.isLosingPosition()){
+    if (board.isWinningPosition()){
+        printf("[CONTROLLER] Winning position! Load next level\n");
+    } else if (board.isLosingPosition()) {
+        printf("[CONTROLLER] Losing position! Restart level\n");
+        loadBoard(currentBoard);
+        view->setBoard(board);
+        refreshView();
+    } else {
         printf("[CONTROLLER] You haven't lost. Should refresh view.\n");
         if (key == GLUT_KEY_UP){
             printf("[CONTROLLER] Pressed UP key.\n");
@@ -48,11 +55,9 @@ void KeyboardController::specialKeyPressed(int key){
         if (board.isLosingPosition()){
             view->setMessage("You lost! Press any key to restart.");            
         }
-    } else {
-        printf("[CONTROLLER] Losing position! Restart the level\n");
-        loadBoard(currentBoard);
-        view->setBoard(board);
-        refreshView();
+        if (board.isWinningPosition()) {
+            view->setMessage("Good job! Press any key to load next level.");
+        }
     }
 }
 
