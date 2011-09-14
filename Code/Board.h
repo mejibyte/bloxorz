@@ -33,4 +33,5 @@ private:
     int cols;
     vector< vector<Cell> > cells;
     Tile tile;
+    bool outside(int row, int col);
 };

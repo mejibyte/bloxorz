@@ -3,6 +3,10 @@
 Cell::Cell() {
 }
 
+Cell::Cell(int row, int col) : row(row), col(col) {
+    
+}
+
 Cell::Cell(int row, int col, bool hollow, bool weak, bool winningHole) : row(row), col(col), hollow(hollow), weak(weak), winningHole(winningHole) {
 }
 
