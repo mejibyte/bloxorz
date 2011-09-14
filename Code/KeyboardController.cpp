@@ -16,19 +16,6 @@ void KeyboardController::refreshView() {
     view->refresh();
 }
 void KeyboardController::specialKeyPressed(int key){
-   if(key == GLUT_KEY_UP) {
-	   board.moveTile(Board::Up);
-    }
-    if(key == GLUT_KEY_DOWN) {
-		board.moveTile(Board::Down);
-    }
-    if(key == GLUT_KEY_LEFT) {
-        board.moveTile(Board::Left);
-    }
-    if(key == GLUT_KEY_RIGHT) {
-        board.moveTile(Board::Right);
-    }
-    glutPostRedisplay();
     printf("Special key pressed: %d.\n", key);
     if (key == GLUT_KEY_UP){
         printf("[CONTROLLER] Pressed UP key.\n");
