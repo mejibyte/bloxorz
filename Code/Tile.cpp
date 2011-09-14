@@ -5,13 +5,11 @@ Tile::Tile(){
 }
 
 bool Tile::isStandingUp() {
-    // TODO: Implement this method
-    return false;
+    return cells.size() == 1;
 }
 
-bool isLayingDown() {
-    // TODO: Implement this method
-    return true;
+bool Tile::isLayingDown() {
+    return cells.size() > 1;
 }
 
 vector<Cell> Tile::getCurrentCells() {
