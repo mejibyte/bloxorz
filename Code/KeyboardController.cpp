@@ -16,19 +16,7 @@ void KeyboardController::refreshView() {
     view->refresh();
 }
 void KeyboardController::specialKeyPressed(int key){
-   if(key == GLUT_KEY_UP) {
-	   board.moveTile(Board::Up);
-    }
-    if(key == GLUT_KEY_DOWN) {
-		board.moveTile(Board::Down);
-    }
-    if(key == GLUT_KEY_LEFT) {
-        board.moveTile(Board::Left);
-    }
-    if(key == GLUT_KEY_RIGHT) {
-        board.moveTile(Board::Right);
-    }
-    glutPostRedisplay();
+   
     printf("Special key pressed: %d.\n", key);
     if (key == GLUT_KEY_UP){
         printf("[CONTROLLER] Pressed UP key.\n");
@@ -54,6 +42,7 @@ void KeyboardController::specialKeyPressed(int key){
     } else {
         printf("[CONTROLLER] Losing position!\n");
     }
+    glutPostRedisplay();
 }
 
 void KeyboardController::normalKeyPressed(unsigned char key){
@@ -61,16 +50,20 @@ void KeyboardController::normalKeyPressed(unsigned char key){
       	case 27:
          exit(0);
          break;
-      	case 'a':		
+      	case 'a':
+        printf("[CONTROLLER] Pressed LEFT key.\n");
             board.moveTile(Board::Left);
             break;
-      	case 's':		
+      	case 's':
+      	printf("[CONTROLLER] Pressed DOWN key.\n");
             board.moveTile(Board::Down);
             break;
-	case 'd':		
+	case 'd':
+	 printf("[CONTROLLER] Pressed RIGHT key.\n");
 		board.moveTile(Board::Right);
 		break;
-	case 'w':		
+	case 'w':
+	 printf("[CONTROLLER] Pressed UP key.\n");
 		board.moveTile(Board::Up);
 		break;
 	}
