@@ -16,10 +16,6 @@ void KeyboardController::refreshView() {
     view->refresh();
 }
 void KeyboardController::specialKeyPressed(int key){
-<<<<<<< HEAD
-=======
-   
->>>>>>> 7bc4ecd0b175a17be54ace9306006c0aad79be68
     printf("Special key pressed: %d.\n", key);
     if (!board.isLosingPosition()){
         printf("[CONTROLLER] Not losing position. Should refresh view.\n");
