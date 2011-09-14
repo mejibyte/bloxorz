@@ -36,7 +36,7 @@ Board::Board(string filename){
         }
     }
     assert(cells.size() == rows);
-    assert(cells.size() == cols);
+    assert(cells[0].size() == cols);
 }
 
 int Board::getRows() {

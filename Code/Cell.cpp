@@ -4,18 +4,23 @@ Cell::Cell() {
 }
 
 Cell::Cell(int row, int col, bool empty, bool weak, bool winningHole) {
-    
+    int rowCell=row;
+    int rowCol=col;
+    bool floor=empty=true;
+    bool wearFloor=false;   //por defecto todas las celdas serán solidas y al leer el board se cambiaran.
+    bool floorWinningHole=false;
     
 }
 
 int Cell::getRow() const {
-    //TODO: Implement this method    
-    return 1;
+    
+    return rowCell;
+    
 }
 
 int Cell::getColumn() const {
-    //TODO: Implement this method    
-    return 1;
+       
+    return rowCol;
 }
 
 
@@ -30,6 +35,7 @@ bool Cell::isWeak() const {
 }
 
 bool Cell::isWinningHole() const {
-    //TODO: Implement this method    
+    //TODO: Implement this method   
+    
     return (rand() % 4 == 0);    
 }
