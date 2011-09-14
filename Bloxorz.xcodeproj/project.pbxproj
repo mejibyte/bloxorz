@@ -53,6 +53,11 @@
 		32953D96141DBB9D005517FC /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		32953D98141DBC0B005517FC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		32953D9B141DBD80005517FC /* 1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 1.txt; path = boards/1.txt; sourceTree = SOURCE_ROOT; };
+		A1F8201E1421166A00E909C4 /* 2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 2.txt; path = boards/2.txt; sourceTree = SOURCE_ROOT; };
+		A1F8201F1421166A00E909C4 /* 3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 3.txt; path = boards/3.txt; sourceTree = SOURCE_ROOT; };
+		A1F820201421166A00E909C4 /* 4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 4.txt; path = boards/4.txt; sourceTree = SOURCE_ROOT; };
+		A1F820211421166A00E909C4 /* 5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 5.txt; path = boards/5.txt; sourceTree = SOURCE_ROOT; };
+		A1F820221421166A00E909C4 /* 6.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 6.txt; path = boards/6.txt; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +144,11 @@
 			isa = PBXGroup;
 			children = (
 				32953D9B141DBD80005517FC /* 1.txt */,
+				A1F8201E1421166A00E909C4 /* 2.txt */,
+				A1F8201F1421166A00E909C4 /* 3.txt */,
+				A1F820201421166A00E909C4 /* 4.txt */,
+				A1F820211421166A00E909C4 /* 5.txt */,
+				A1F820221421166A00E909C4 /* 6.txt */,
 			);
 			name = Boards;
 			path = Code;
