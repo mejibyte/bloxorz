@@ -11,7 +11,8 @@ KeyboardController::KeyboardController(string boardsDir) {
     if (boardsDir[boardsDir.size() - 1] != '/') boardsDir += '/';
     this->boardsDir = boardsDir;
     
-    board = Board(this->boardsDir + "1.txt");
+    currentBoard = 1;
+    loadBoard(currentBoard);
     view = new TwoDimensionalView(board);    
 }
 
@@ -76,3 +77,9 @@ void KeyboardController::reshapeView(int newWidth, int newHeight){
     view->reshape(newWidth, newHeight);
 }
 
+void KeyboardController::loadBoard(int boardNumber) {
+    stringstream sin;
+    sin << boardsDir << boardNumber << ".txt";
+    printf("[CONTROLLER] Loading board %s\n", sin.str().c_str());
+    board = Board(sin.str());
+}

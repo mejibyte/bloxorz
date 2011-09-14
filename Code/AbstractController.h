@@ -19,4 +19,5 @@ protected:
     Board board;
     AbstractView * view;
     string boardsDir; // Path to the folder where the boards are, i.e ~/Games/Bloxorz/boards/
+    int currentBoard; // Boards are expected to be named 1.txt, 2.txt, etc. This attribute says what's the board we are currently playing.
 };

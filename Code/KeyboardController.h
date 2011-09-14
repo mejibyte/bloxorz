@@ -8,6 +8,7 @@
 
 #include <cstdio>
 #include <string>
+#include <sstream>
 
 #include "AbstractController.h"
 #include "TwoDimensionalView.h"
@@ -23,5 +24,7 @@ public:
     void refreshView();
     void normalKeyPressed(unsigned char key);
     void specialKeyPressed(int key);  
-    void reshapeView(int newWidth, int newHeight);    
+    void reshapeView(int newWidth, int newHeight);
+private:
+    void loadBoard(int boardNumber);
 };
