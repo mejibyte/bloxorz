@@ -1,5 +1,11 @@
 #pragma once
 
+#ifdef __APPLE__
+#include <GLUT/glut.h>
+#elif defined _WIN32 || defined _WIN64
+#include <GL/glut.h>
+#endif 
+
 #include <cstdio>
 
 #include "AbstractController.h"
