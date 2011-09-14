@@ -34,21 +34,21 @@ void KeyboardController::specialKeyPressed(int key){
 
 void KeyboardController::normalKeyPressed(unsigned char key){
     switch (key) {
-      case 27:
+      	case 27:
          exit(0);
          break;
-      case 'a':		
+      	case 'a':		
             board.moveTile(left);
             break;
-	   case 's':		
+      	case 's':		
             board.moveTile(down);
             break;
-		case 'd':		
-			board.moveTile(right);
-			break;
-		case 'w':		
-			board.moveTile(up);
-			break;
+	case 'd':		
+		board.moveTile(right);
+		break;
+	case 'w':		
+		board.moveTile(up);
+		break;
 	}
 	glutPostRedisplay();
     printf("%c was pressed.\n", key);
