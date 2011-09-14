@@ -16,6 +16,10 @@ void KeyboardController::refreshView() {
     view->refresh();
 }
 void KeyboardController::specialKeyPressed(int key){
+<<<<<<< HEAD
+=======
+   
+>>>>>>> 7bc4ecd0b175a17be54ace9306006c0aad79be68
     printf("Special key pressed: %d.\n", key);
     if (!board.isLosingPosition()){
         printf("[CONTROLLER] Not losing position. Should refresh view.\n");
@@ -41,9 +45,11 @@ void KeyboardController::specialKeyPressed(int key){
     } else {
         printf("[CONTROLLER] Losing position!\n");
     }
+    glutPostRedisplay();
 }
 
 void KeyboardController::normalKeyPressed(unsigned char key){
+    printf("[CONTROLLER] %c was pressed.\n", key);    
     switch (key) {
       	case 27:
             exit(0); //ESC
@@ -61,7 +67,6 @@ void KeyboardController::normalKeyPressed(unsigned char key){
             specialKeyPressed(GLUT_KEY_LEFT);
             break;
 	}
-    printf("[CONTROLLER] %c was pressed.\n", key);
 }
 
 void KeyboardController::reshapeView(int newWidth, int newHeight){
