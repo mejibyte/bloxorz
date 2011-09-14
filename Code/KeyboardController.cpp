@@ -17,16 +17,16 @@ void KeyboardController::refreshView() {
 }
 void KeyboardController::specialKeyPressed(int key){
    if(key == GLUT_KEY_UP) {
-      board.moveTile(Up);
+	   board.moveTile(Board::Up);
     }
     if(key == GLUT_KEY_DOWN) {
-        board.moveTile(Down);
+		board.moveTile(Board::Down);
     }
     if(key == GLUT_KEY_LEFT) {
-        board.moveTile(Left);
+        board.moveTile(Board::Left);
     }
     if(key == GLUT_KEY_RIGHT) {
-        board.moveTile(Right);
+        board.moveTile(Board::Right);
     }
     glutPostRedisplay();
     printf("Special key pressed: %d.\n", key);
@@ -38,16 +38,16 @@ void KeyboardController::normalKeyPressed(unsigned char key){
          exit(0);
          break;
       	case 'a':		
-            board.moveTile(left);
+            board.moveTile(Board::Left);
             break;
       	case 's':		
-            board.moveTile(down);
+            board.moveTile(Board::Down);
             break;
 	case 'd':		
-		board.moveTile(right);
+		board.moveTile(Board::Right);
 		break;
 	case 'w':		
-		board.moveTile(up);
+		board.moveTile(Board::Up);
 		break;
 	}
 	glutPostRedisplay();
