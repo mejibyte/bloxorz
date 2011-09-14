@@ -17,16 +17,16 @@ void KeyboardController::refreshView() {
 }
 void KeyboardController::specialKeyPressed(int key){
    if(key == GLUT_KEY_UP) {
-      board.moveTile(up);
+      board.moveTile(Up);
     }
     if(key == GLUT_KEY_DOWN) {
-        board.moveTile(down);
+        board.moveTile(Down);
     }
     if(key == GLUT_KEY_LEFT) {
-        board.moveTile(left);
+        board.moveTile(Left);
     }
     if(key == GLUT_KEY_RIGHT) {
-        board.moveTile(right);
+        board.moveTile(Right);
     }
     glutPostRedisplay();
     printf("Special key pressed: %d.\n", key);
