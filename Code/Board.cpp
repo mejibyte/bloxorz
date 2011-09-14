@@ -84,7 +84,7 @@ bool Board::isLosingPosition() {
 void Board::moveTile(Direction direction) {
                     //Up, Right, Down, Left    
     int deltaRow[] = { -1, +0, +1, +0 };
-    int deltaCol[] = { +0, -1, +0, +1 };
+    int deltaCol[] = { +0, +1, +0, -1 };
     
     if (tile.isStandingUp()){ // make it lay down in the given direction
         int row = tile.getCurrentCells().front().getRow(), col = tile.getCurrentCells().front().getColumn();
