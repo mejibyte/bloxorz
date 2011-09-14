@@ -15,11 +15,7 @@ bool isLayingDown() {
 }
 
 vector<Cell> Tile::getCurrentCells() {
-    // TODO: Implement this method
-    vector<Cell> ans;
-    ans.push_back(Cell(1, 1, false, false, false));
-    ans.push_back(Cell(1, 2, false, false, false));
-    return ans;
+    return cells;
 }
 
 void Tile::addCell(Cell someCellWhereTheTileIs) {

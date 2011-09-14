@@ -21,13 +21,13 @@ Board::Board(string filename){
             char c = line[j];
             if (c == 'S'){ // solid
                 cells.back().push_back(Cell(i, j, false, false, false));
-            }else if(c == 'H'){
+            }else if(c == 'H'){ // hollow
                 cells.back().push_back(Cell(i, j, true, false, false));
-            }else if(c == 'K'){
+            }else if(c == 'K'){ // weak
                 cells.back().push_back(Cell(i, j, false, true, false));                
-            }else if(c == 'W'){
+            }else if(c == 'W'){ // winning hole
                 cells.back().push_back(Cell(i, j, false, false, true));                
-            }else if(c == 'T'){
+            }else if(c == 'T'){ // tile
                 cells.back().push_back(Cell(i, j, false, false, false));
                 tile.addCell(cells.back().back());
             }else{
@@ -52,6 +52,9 @@ Tile Board::getTile() {
 }
 
 Cell Board::getCellAt(int row, int col) {
-    // TODO: return an actual cell in the "cells" variable
-    return Cell(row, col, false, false, false);
+    if (row < 0 or row >= getRows() or col < 0 or col >= getCols()){
+     throw "Invalid arguments: both row and col must be inside the board.";
+    } else {
+        return cells[row][col];        
+    }
 }
