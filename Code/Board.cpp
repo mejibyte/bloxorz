@@ -76,6 +76,7 @@ bool Board::isLosingPosition() {
     const vector<Cell> &cells = tile.getCurrentCells();
     for (int k = 0; k < cells.size(); ++k){
         if (outside(cells[k].getRow(), cells[k].getColumn())) return true;
+        if (getCellAt(cells[k].getRow(), cells[k].getColumn()).isHollow()) return true;
     }
     Cell c = cells.front();
     return (tile.isStandingUp() && getCellAt(c.getRow(), c.getColumn()).isWeak());
