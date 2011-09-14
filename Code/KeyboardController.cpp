@@ -49,12 +49,19 @@ void KeyboardController::specialKeyPressed(int key){
             view->setMessage("You lost! Press any key to restart.");            
         }
     } else {
-        printf("[CONTROLLER] Losing position!\n");
+        printf("[CONTROLLER] Losing position! Restart the level\n");
+        loadBoard(currentBoard);
+        view->setBoard(board);
+        refreshView();
     }
 }
 
 void KeyboardController::normalKeyPressed(unsigned char key){
-    printf("[CONTROLLER] %c was pressed.\n", key);    
+    printf("[CONTROLLER] %c was pressed.\n", key);
+    if (board.isLosingPosition()) {
+        specialKeyPressed(-1);
+        return;
+    }
     switch (key) {
       	case 27:
             exit(0); //ESC
