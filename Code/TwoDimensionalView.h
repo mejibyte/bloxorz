@@ -4,6 +4,7 @@
 #include <OpenGL/gl.h>
 #include <OpenGL/glu.h>
 #include <GLUT/glut.h>
+#include <string>
 
 #include "AbstractView.h"
 #include "Board.h"
@@ -15,8 +16,11 @@ public:
     void setBoard(Board board);
     void refresh();
     void reshape(int newWidth, int newHeight);
+    void setMessage(const char * message);
+    void clearMessage();    
 private:
     int cellWidth();
     int cellHeight();    
     void drawRectangleAt(int row, int col,        double r, double g, double b);
+    string message;
 };

@@ -26,7 +26,7 @@ void KeyboardController::refreshView() {
 void KeyboardController::specialKeyPressed(int key){
     printf("Special key pressed: %d.\n", key);
     if (!board.isLosingPosition()){
-        printf("[CONTROLLER] Not losing position. Should refresh view.\n");
+        printf("[CONTROLLER] You haven't lost. Should refresh view.\n");
         if (key == GLUT_KEY_UP){
             printf("[CONTROLLER] Pressed UP key.\n");
             board.moveTile(Board::Up);
@@ -42,14 +42,15 @@ void KeyboardController::specialKeyPressed(int key){
         } else if (key == GLUT_KEY_RIGHT) {
             printf("[CONTROLLER] Pressed RIGHT key.\n");        
             board.moveTile(Board::Right);        
-            
         }
         view->setBoard(board);
         refreshView();
+        if (board.isLosingPosition()){
+            view->setMessage("You lost! Press any key to restart.");            
+        }
     } else {
         printf("[CONTROLLER] Losing position!\n");
     }
-    glutPostRedisplay();
 }
 
 void KeyboardController::normalKeyPressed(unsigned char key){

@@ -90,3 +90,24 @@ void TwoDimensionalView::drawRectangleAt(int row, int col,        double r, doub
     glVertex2i(rightX, topY);
     glEnd();
 }
+
+void TwoDimensionalView::setMessage(const char * message) {
+    int textWidth = 0;
+    for (const char * c = message; *c; c++){
+        textWidth += glutBitmapWidth(GLUT_BITMAP_HELVETICA_18, *c);
+    }
+    
+    int x = (WIDTH - textWidth) / 2;
+    int y = HEIGHT / 2;
+    
+    glColor3f(1, 1, 1);
+    glRasterPos2f(x, y);    
+    for (const char * c = message; *c; c++){
+        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *c);
+    }
+    glutSwapBuffers();
+}
+
+void TwoDimensionalView::clearMessage() {
+    refresh();
+}

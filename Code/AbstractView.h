@@ -9,6 +9,8 @@ public:
     virtual void setBoard(Board board) = 0;
     virtual void refresh() = 0;
     virtual void reshape(int newWidth, int newHeight) = 0;
+    virtual void setMessage(const char * message) = 0;
+    virtual void clearMessage() = 0;    
 protected:
     Board board;
 };
