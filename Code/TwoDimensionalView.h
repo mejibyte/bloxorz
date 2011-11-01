@@ -18,6 +18,11 @@ public:
     void reshape(int newWidth, int newHeight);
     void setMessage(const char * message);
     void clearMessage();    
+    void cameraUp();
+    void cameraDown();
+	void cameraLeft();
+	void cameraRight();
+    
 private:
     int cellWidth();
     int cellHeight();    

@@ -11,6 +11,11 @@ public:
     virtual void reshape(int newWidth, int newHeight) = 0;
     virtual void setMessage(const char * message) = 0;
     virtual void clearMessage() = 0;   
+    virtual void cameraUp();
+	virtual void cameraDown();
+	virtual void cameraLeft();
+	virtual void cameraRight();
+    
 protected:
     Board board;
 };

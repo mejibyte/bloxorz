@@ -45,15 +45,13 @@ void ThreeDimensionalView::refresh(){
 	int rows = board.getRows();
 	int cols = board.getCols();
     
-    
 	glLoadIdentity (); //Para manejar la camara            
     GLfloat x = distancia * sin(angulo);
     GLfloat z = distancia * cos(angulo);
     gluLookAt (x, 15.0, z, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
     
     
-    
-	GLfloat scala = 1.;
+    GLfloat scala = 1.;
     
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, light0color);
@@ -111,20 +109,21 @@ void ThreeDimensionalView::reshape(GLsizei w, GLsizei h) {
 }
 
 void ThreeDimensionalView::drawCubeAt(int row, int col, float color[]){
-    
+
 	GLfloat mat_ambient[] = { 0.4, 0.4, 0.4, 1.0 };
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
     GLfloat low_shininess[] = { 2.0 };
     
 	glPushMatrix();
-    glTranslatef(row, 0., col);
-    glPushMatrix();
-    glScalef(1., 0.5, 1.);
-    
-    glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
-    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
-    glMaterialfv(GL_FRONT, GL_SHININESS, low_shininess);
+
+				glTranslatef(row, 0., col);
+				glPushMatrix();
+				glScalef(1., 0.5, 1.);
+
+				glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+				glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
+				glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+				glMaterialfv(GL_FRONT, GL_SHININESS, low_shininess);
     
     glutSolidCube(1.);       
     glPopMatrix();

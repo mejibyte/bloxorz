@@ -93,6 +93,9 @@ void KeyboardController::normalKeyPressed(unsigned char key){
             break;
         case 'w':		
             specialKeyPressed(GLUT_KEY_LEFT);
+        case 'u':		
+            view->cameraUp();
+            break;
        
 	}
 }

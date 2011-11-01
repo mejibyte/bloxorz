@@ -26,12 +26,13 @@ public:
     void refresh();
     void reshape(int newWidth, int newHeight);
     void setMessage(const char * message);
-    
-    void clearMessage();
     void cameraUp();
-	void cameraDown();
+    void cameraDown();
 	void cameraLeft();
 	void cameraRight();
+    void clearMessage();
+    
+    
 private:
     //int cellWidth();
     //int cellHeight();    

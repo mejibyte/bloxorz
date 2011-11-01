@@ -111,3 +111,8 @@ void TwoDimensionalView::setMessage(const char * message) {
 void TwoDimensionalView::clearMessage() {
     refresh();
 }
+
+void TwoDimensionalView::cameraUp(){}
+void TwoDimensionalView::cameraDown(){}
+void TwoDimensionalView::cameraLeft(){}
+void TwoDimensionalView::cameraRight(){}
