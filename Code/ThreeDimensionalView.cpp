@@ -1,6 +1,12 @@
 #include "ThreeDimensionalView.h"
 
-GLfloat ambient[] = { 0.0, 0.0, 0.0, 0.0 };  
+GLfloat distancia = 25.0;
+GLfloat incremento = 0.1;
+GLfloat angulo = 0.0;
+GLfloat incrementoAngulo = 0.1;
+GLfloat Xpos, Zpos;
+
+GLfloat ambient[] = { 0.0, 0.0, 0.0, 0.0 };	
 GLfloat diffuse[] = { 1.0, 1.0, 1.0, 0.0 };
 GLfloat specular[] = { 1.0, 1.0, 1.0, 0.0 };
 GLfloat position[] = { 5.0, 5.0, 5.0, 0.0 };
@@ -38,6 +44,14 @@ void ThreeDimensionalView::refresh(){
 
 	int rows = board.getRows();
 	int cols = board.getCols();
+
+
+	glLoadIdentity (); //Para manejar la camara            
+    GLfloat x = distancia * sin(angulo);
+    GLfloat z = distancia * cos(angulo);
+    gluLookAt (x, 0.0, z, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+
+
 
 	GLfloat scala = 1.;
 
@@ -96,14 +110,13 @@ void ThreeDimensionalView::reshape(GLsizei w, GLsizei h) {
 	glLoadIdentity();
 }
 
-void drawCubeAt(int row, int col, float color[]){
+void ThreeDimensionalView::drawCubeAt(int row, int col, float color[]){
 
 	GLfloat mat_ambient[] = { 0.4, 0.4, 0.4, 1.0 };
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
     GLfloat low_shininess[] = { 2.0 };
 
 	glPushMatrix();
-				//glRotatef((GLfloat) shoulderY, 0., 0., 1.); //para rotar el tablero
 				glTranslatef(row, 0., col);
 				glPushMatrix();
 				glScalef(1., 0.5, 1.);
@@ -136,6 +149,26 @@ void ThreeDimensionalView::setMessage(const char * message) {
         glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *c);
     }
     glutSwapBuffers();
+}
+
+void ThreeDimensionalView::cameraUp() {
+    	distancia -= incremento;
+        refresh();
+}
+
+void ThreeDimensionalView::cameraDown() {
+    distancia += incremento;
+	refresh();
+}
+
+void ThreeDimensionalView::cameraRight() {
+    angulo -= incrementoAngulo;
+	refresh();
+}
+
+void ThreeDimensionalView::cameraLeft() {
+    angulo += incrementoAngulo;
+    refresh();
 }
 
 void ThreeDimensionalView::clearMessage() {
