@@ -13,6 +13,7 @@
 
 #include "AbstractController.h"
 #include "TwoDimensionalView.h"
+#include "ThreeDimensionalView.h"
 
 using namespace std;
 

@@ -12,7 +12,8 @@
 
 #include <string>
 #include <vector>
-   
+#include <cmath>
+
 
 #include "AbstractView.h"
 #include "Board.h"
@@ -25,10 +26,16 @@ public:
     void refresh();
     void reshape(int newWidth, int newHeight);
     void setMessage(const char * message);
-    void clearMessage();    
+    
+    void clearMessage();
+    void cameraUp();
+	void cameraDown();
+	void cameraLeft();
+	void cameraRight();
 private:
     //int cellWidth();
     //int cellHeight();    
     void drawCubeAt(int row, int col,        float color[]);
+    void drawTileAt(int row, int col);
     string message;
 };

@@ -13,7 +13,8 @@ KeyboardController::KeyboardController(string boardsDir) {
     
     currentBoard = 1;
     loadBoard(currentBoard);
-    view = new TwoDimensionalView(board);    
+    //view = new TwoDimensionalView(board);    
+    view = new ThreeDimensionalView(board);    
 }
 
 void KeyboardController::cleanUp() {
@@ -92,7 +93,7 @@ void KeyboardController::normalKeyPressed(unsigned char key){
             break;
         case 'w':		
             specialKeyPressed(GLUT_KEY_LEFT);
-            break;
+       
 	}
 }
 

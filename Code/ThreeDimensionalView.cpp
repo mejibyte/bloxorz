@@ -1,6 +1,12 @@
 #include "ThreeDimensionalView.h"
 
-GLfloat ambient[] = { 0.0, 0.0, 0.0, 0.0 };  
+GLfloat distancia = 25.0;
+GLfloat incremento = 0.1;
+GLfloat angulo = 0.0;
+GLfloat incrementoAngulo = 0.1;
+GLfloat Xpos, Zpos;
+
+GLfloat ambient[] = { 0.0, 0.0, 0.0, 0.0 };	
 GLfloat diffuse[] = { 1.0, 1.0, 1.0, 0.0 };
 GLfloat specular[] = { 1.0, 1.0, 1.0, 0.0 };
 GLfloat position[] = { 5.0, 5.0, 5.0, 0.0 };
@@ -32,25 +38,33 @@ void ThreeDimensionalView::setBoard(Board someBoard) {
 }
 
 void ThreeDimensionalView::refresh(){
-
+    
 	puts("[VIEW] called refresh()");
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+    
 	int rows = board.getRows();
 	int cols = board.getCols();
-
+    
+    
+	glLoadIdentity (); //Para manejar la camara            
+    GLfloat x = distancia * sin(angulo);
+    GLfloat z = distancia * cos(angulo);
+    gluLookAt (x, 15.0, z, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+    
+    
+    
 	GLfloat scala = 1.;
-
+    
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, light0color);
     glLightfv(GL_LIGHT0, GL_POSITION, light0position);
-
+    
     for (int i = 0; i < rows; ++i){
         for (int j = 0; j < cols; ++j){
             Cell c = board.getCellAt(i, j);
 			rowPos=i*scala;
 			colPos=j*scala;
-						
+            
             if (c.isHollow()){
                 drawCubeAt(i, j,    mat_gray);
             }else if (c.isWeak()){
@@ -58,28 +72,28 @@ void ThreeDimensionalView::refresh(){
             }else if (c.isWinningHole()){
                 drawCubeAt(i, j,    mat_red);
             }else             
-			drawCubeAt(rowPos,colPos, mat_blue);		
-		  
+                drawCubeAt(rowPos,colPos, mat_blue);		
+            
         }
-		
+        
     }
-
-	 glPopMatrix();
+    
+    glPopMatrix();
     
     glLightfv(GL_LIGHT0, GL_POSITION, position);
-
-	
-	//aquí va el codigo del tile
-	/*Tile t = board.getTile();
+    
+    
+    //aquí va el codigo del tile
+	Tile t = board.getTile();
     vector<Cell> tileCells = t.getCurrentCells();
     for (int k = 0; k < tileCells.size(); ++k){
         const Cell &c = tileCells[k];
         printf("Tile is at <%d, %d>\n", c.getRow(), c.getColumn());
-        drawRectangleAt(c.getRow(), c.getColumn(), 0, 0, 1);
-    }*/
-	// Ejecutar los comandos 
+        drawTileAt(c.getRow(), c.getColumn());
+    }
+    
 	glutSwapBuffers();
-
+    
 }
 
 
@@ -90,35 +104,56 @@ void ThreeDimensionalView::reshape(GLsizei w, GLsizei h) {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
     
-		glFrustum (-1.0, 1.0, -1.0, 1.0, 1.5, 300.0);
+    glFrustum (-1.0, 1.0, -1.0, 1.0, 1.5, 300.0);
     
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 }
 
-void drawCubeAt(int row, int col, float color[]){
-
+void ThreeDimensionalView::drawCubeAt(int row, int col, float color[]){
+    
 	GLfloat mat_ambient[] = { 0.4, 0.4, 0.4, 1.0 };
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
     GLfloat low_shininess[] = { 2.0 };
-
-	glPushMatrix();
-				//glRotatef((GLfloat) shoulderY, 0., 0., 1.); //para rotar el tablero
-				glTranslatef(row, 0., col);
-				glPushMatrix();
-				glScalef(1., 0.5, 1.);
-
-				glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
-				glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
-				glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
-				glMaterialfv(GL_FRONT, GL_SHININESS, low_shininess);
     
-				glutSolidCube(1.);       
-				glPopMatrix();
-				glEnd();
+	glPushMatrix();
+    glTranslatef(row, 0., col);
+    glPushMatrix();
+    glScalef(1., 0.5, 1.);
+    
+    glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, low_shininess);
+    
+    glutSolidCube(1.);       
+    glPopMatrix();
+    glEnd();
     
 	glPopMatrix();
-
+    
+}
+void ThreeDimensionalView::drawTileAt(int row, int col){
+    GLfloat mat_ambient[] = { 0.4, 0.4, 0.4, 1.0 };
+    GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
+    GLfloat low_shininess[] = { 1.0 };
+    GLfloat mat_blue[] = { 0.0, 0.0, 1, 1.0 };
+    
+	glPushMatrix();
+    //para rotar el tablero
+    glTranslatef(row, 0., col);
+    glPushMatrix();
+    glScalef(1., 3.5, 1.);
+    
+    glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_blue);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, low_shininess);
+    
+    glutSolidCube(1.);       
+    glPopMatrix();
+    
+	glPopMatrix();
 }
 
 void ThreeDimensionalView::setMessage(const char * message) {
@@ -136,6 +171,26 @@ void ThreeDimensionalView::setMessage(const char * message) {
         glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *c);
     }
     glutSwapBuffers();
+}
+
+void ThreeDimensionalView::cameraUp() {
+    distancia -= incremento;
+    refresh();
+}
+
+void ThreeDimensionalView::cameraDown() {
+    distancia += incremento;
+	refresh();
+}
+
+void ThreeDimensionalView::cameraRight() {
+    angulo -= incrementoAngulo;
+	refresh();
+}
+
+void ThreeDimensionalView::cameraLeft() {
+    angulo += incrementoAngulo;
+    refresh();
 }
 
 void ThreeDimensionalView::clearMessage() {
