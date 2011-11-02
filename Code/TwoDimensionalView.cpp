@@ -116,3 +116,4 @@ void TwoDimensionalView::cameraUp(){}
 void TwoDimensionalView::cameraDown(){}
 void TwoDimensionalView::cameraLeft(){}
 void TwoDimensionalView::cameraRight(){}
+void TwoDimensionalView::resetCamera(){}

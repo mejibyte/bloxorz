@@ -31,6 +31,7 @@ public:
     void cameraDown();
 	void cameraLeft();
 	void cameraRight();
+    void resetCamera();
     void clearMessage();
     
     

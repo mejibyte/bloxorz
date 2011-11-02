@@ -14,7 +14,8 @@ KeyboardController::KeyboardController(string boardsDir) {
     currentBoard = 1;
     loadBoard(currentBoard);
     //view = new TwoDimensionalView(board);    
-    view = new ThreeDimensionalView(board);    
+    view = new ThreeDimensionalView(board);
+    view->resetCamera();
 }
 
 void KeyboardController::cleanUp() {
@@ -30,6 +31,7 @@ void KeyboardController::specialKeyPressed(int key){
         printf("[CONTROLLER] Winning position! Load next level\n");
         if (loadBoard(++currentBoard)){
             view->setBoard(board);
+            view->resetCamera();
             refreshView();            
         }
         
@@ -93,6 +95,7 @@ void KeyboardController::normalKeyPressed(unsigned char key){
             break;
         case 'a':		
             specialKeyPressed(GLUT_KEY_LEFT);
+            break;
         case 'u':		
             view->cameraUp();
             break;

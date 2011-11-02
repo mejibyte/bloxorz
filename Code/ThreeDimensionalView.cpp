@@ -1,12 +1,11 @@
-#include "ThreeDimensionalView.h"
+ #include "ThreeDimensionalView.h"
 
 const int CUBE_SIDE = 10;
 
-GLfloat cameraDistance = 200.0;
-GLfloat incremento = 0.1;
-GLfloat angulo = 0.0;
-GLfloat incrementoAngulo = 0.1;
-GLfloat Xpos, Zpos;
+GLdouble cameraDistance = 200.0;
+GLdouble incremento = 10.0;
+GLdouble angulo = 0.0;
+GLdouble incrementoAngulo = 0.1;
 
 GLfloat mat_blue[] = { 0.1, 0.2, 0.8, 1.0 };
 GLfloat mat_red[] = { 0.8, 0.2, 0.1, 1.0 };
@@ -16,8 +15,6 @@ GLfloat mat_gray[] = {0.5, 0.5, 0.5, 1.0};
 GLfloat ambientColor[] = {0.4f, 0.4f, 0.4f, 1.0f}; //Color(0.2, 0.2, 0.2)
 GLfloat light0color[] = { 1.0, 1.0, 1.0, 0.0 };
 GLfloat light0position[] = { 20.0, 100.0, 40.0, 0.0 };
-
-GLfloat rowPos, colPos;
 
 ThreeDimensionalView::ThreeDimensionalView(){
     glClearColor(0, 0, 0, 1);
@@ -36,7 +33,11 @@ ThreeDimensionalView::ThreeDimensionalView(Board board){
 
 void ThreeDimensionalView::setBoard(Board someBoard) {
     board = someBoard;
+}
+
+void ThreeDimensionalView::resetCamera() {
     cameraDistance = max(board.getRows(), board.getCols()) * CUBE_SIDE;
+    printf("Camera distance = %lf\n", cameraDistance);
 }
 
 void ThreeDimensionalView::refresh(){
@@ -75,9 +76,6 @@ void ThreeDimensionalView::refresh(){
         }
         
     }
-    
-    glPopMatrix();
-    
     
     //aquí va el codigo del tile
 	Tile t = board.getTile();
@@ -167,7 +165,9 @@ void ThreeDimensionalView::setMessage(const char * message) {
 }
 
 void ThreeDimensionalView::cameraUp() {
+    puts("[VIEW] Called cameraUp\n");
     cameraDistance -= incremento;
+    cameraDistance = max(cameraDistance, 10.0);
     refresh();
 }
 
