@@ -6,7 +6,7 @@ const int CUBE_SIDE = 10;
 GLdouble cameraDistance = 200.0;
 GLdouble incremento = 10.0;
 GLdouble angulo = 0.0;
-GLdouble incrementoAngulo = 0.1;
+GLdouble incrementoAngulo = 5.0;
 
 GLfloat mat_blue[] = { 0.1, 0.2, 0.8, 1.0 };
 GLfloat mat_red[] = { 0.8, 0.2, 0.1, 1.0 };
@@ -50,7 +50,7 @@ void ThreeDimensionalView::setPerspective() {
     glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
     
-    glFrustum (-1.0, 1.0, -1.0, 1.0, 1.5, 300.0);
+    glFrustum (-1.0, 1.0, -1.0, 1.0, 1.5, 400.0);
     
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -341,6 +341,7 @@ void ThreeDimensionalView::drawBoard() {
     gluLookAt(middleX * 2, middleY, cameraDistance,         middleX, middleY, 0.0,     -1.0, 0.0, 0.0);
     glRotated(-15, 0, 1, 0);
     glRotated(-5, 0, 0, 1);
+    glRotated(angulo, 0, 0, 1);
     
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, light0color);
@@ -381,7 +382,7 @@ void ThreeDimensionalView::animateStraightFall() {
 }
 
 
-void ThreeDimensionalView::drawTileWithRotation(int row, int col, bool standingUp, long double deltaZ, double angleOfRotation){
+void ThreeDimensionalView::drawTileWithRotation(int row, int col, bool standingUp, long double deltaZ, double angleOfRotation, string axis){
     
     GLfloat mat_ambient[] = { 0.4, 0.4, 0.4, 1.0 };
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
@@ -396,7 +397,11 @@ void ThreeDimensionalView::drawTileWithRotation(int row, int col, bool standingU
         glTranslatef(0, 0, 0.2 * CUBE_SIDE);
     }
     
-    glRotated(angleOfRotation, 0, 0, 1);
+    if (axis == "X") {
+        glRotated(angleOfRotation, 1, 0, 0);
+    } else if (axis == "Y") {
+        glRotated(angleOfRotation, 0, 1, 0);        
+    }
     
     glScalef(CUBE_SIDE, CUBE_SIDE, CUBE_SIDE + CUBE_SIDE * standingUp);
     glTexCoord2f(1.0, 0.0);    
@@ -420,10 +425,16 @@ void ThreeDimensionalView::animateRotatingFall() {
         
         Tile t = board.getTile();
         vector<Cell> tileCells = t.getCurrentCells();
+        assert(tileCells.size() == 2);
+        string axis = "Y";
+        if (tileCells[0].getColumn() == tileCells[1].getColumn()){
+            axis = "X";
+        }
+        cout << axis << endl;
         for (int k = 0; k < tileCells.size(); ++k){
             const Cell &c = tileCells[k];
             printf("Tile is at <%d, %d>\n", c.getRow(), c.getColumn());
-            drawTileWithRotation(c.getRow(), c.getColumn(), t.isStandingUp(), -(tick * tick) * 200, 2 * 360 * tick);
+            drawTileWithRotation(c.getRow(), c.getColumn(), t.isStandingUp(), -(tick * tick) * 200, 2 * 360 * tick, axis);
         }
         
         glutSwapBuffers();
