@@ -28,6 +28,8 @@ public:
     bool isLosingPosition();
     // Moves the tile in the given direction, even if it results in an invalid board (like the tile outside the solid cells or standing straight on a weak cell) 
     void moveTile(Direction direction);
+    
+    bool tileIsCompletelyOutsideBoard();
 private:
     int rows;
     int cols;

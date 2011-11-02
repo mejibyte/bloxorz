@@ -81,6 +81,15 @@ bool Board::isLosingPosition() {
     Cell c = cells.front();
     return (tile.isStandingUp() && getCellAt(c.getRow(), c.getColumn()).isWeak());
 }
+
+bool Board::tileIsCompletelyOutsideBoard() {
+    const vector<Cell> &cells = tile.getCurrentCells();
+    for (int k = 0; k < cells.size(); ++k){
+        if (outside(cells[k].getRow(), cells[k].getColumn())) continue;
+        if (!getCellAt(cells[k].getRow(), cells[k].getColumn()).isHollow()) return false;
+    }
+    return true;
+}
 // Moves the tile in the given direction, even if it results in an invalid board (like the tile outside the solid cells or standing straight on a weak cell) 
 void Board::moveTile(Direction direction) {
                     //Up, Right, Down, Left    

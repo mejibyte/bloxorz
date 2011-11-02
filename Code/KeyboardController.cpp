@@ -61,7 +61,7 @@ void KeyboardController::specialKeyPressed(int key){
         view->setBoard(board);
         refreshView();
         if (board.isLosingPosition()){
-            if (board.getTile().isStandingUp()) {
+            if (board.getTile().isStandingUp() || board.tileIsCompletelyOutsideBoard()) {
                 view->animateStraightFall();
             }
             view->setMessage("You lost! Press any key to restart.");
