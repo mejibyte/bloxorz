@@ -82,7 +82,7 @@ void KeyboardController::normalKeyPressed(unsigned char key){
       	case 27:
             exit(0); //ESC
             break;
-      	case 'a':		
+      	case 'w':		
             specialKeyPressed(GLUT_KEY_UP);
             break;
       	case 's':		
@@ -91,7 +91,7 @@ void KeyboardController::normalKeyPressed(unsigned char key){
         case 'd':		
             specialKeyPressed(GLUT_KEY_RIGHT);
             break;
-        case 'w':		
+        case 'a':		
             specialKeyPressed(GLUT_KEY_LEFT);
         case 'u':		
             view->cameraUp();
