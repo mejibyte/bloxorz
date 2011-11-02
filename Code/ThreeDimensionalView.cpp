@@ -90,7 +90,7 @@ void ThreeDimensionalView::refresh(){
     for (int k = 0; k < tileCells.size(); ++k){
         const Cell &c = tileCells[k];
         printf("Tile is at <%d, %d>\n", c.getRow(), c.getColumn());
-        drawTileAt(c.getRow(), c.getColumn());
+        drawTileAt(c.getRow(), c.getColumn(),t.isLayingDown(),t.isStandingUp());
     }
     
 	glutSwapBuffers();
@@ -132,7 +132,7 @@ void ThreeDimensionalView::drawCubeAt(int row, int col, float color[]){
 	glPopMatrix();
     
 }
-void ThreeDimensionalView::drawTileAt(int row, int col){
+void ThreeDimensionalView::drawTileAt(int row, int col, bool down, bool up){
     GLfloat mat_ambient[] = { 0.4, 0.4, 0.4, 1.0 };
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
     GLfloat low_shininess[] = { 1.0 };
@@ -142,8 +142,11 @@ void ThreeDimensionalView::drawTileAt(int row, int col){
         //para rotar el tablero
         glTranslatef(row, 1., col);
         glPushMatrix();
+    if(up){
             glScalef(1, 2., 1);
-            
+    }else {
+        glScalef(1, 1., 1);
+    }
             glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
             glMaterialfv(GL_FRONT, GL_DIFFUSE, tile_color);
             glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
