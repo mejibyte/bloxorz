@@ -16,6 +16,7 @@ public:
 	virtual void cameraLeft() = 0;
 	virtual void cameraRight() = 0;
     virtual void resetCamera() = 0;
+    virtual void animateStraightFall() = 0;
 protected:
     Board board;
 };

@@ -61,9 +61,13 @@ void KeyboardController::specialKeyPressed(int key){
         view->setBoard(board);
         refreshView();
         if (board.isLosingPosition()){
-            view->setMessage("You lost! Press any key to restart.");            
+            if (board.getTile().isStandingUp()) {
+                view->animateStraightFall();
+            }
+            view->setMessage("You lost! Press any key to restart.");
         }
         if (board.isWinningPosition()) {
+            view->animateStraightFall();
             if (isThereNextLevel()) {
                 view->setMessage("Good job! Press any key to load next level.");
             } else {

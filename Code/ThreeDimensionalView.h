@@ -37,13 +37,14 @@ public:
 	void cameraRight();
     void resetCamera();
     void clearMessage();
-    
+    void animateStraightFall();    
     
 private:
     //int cellWidth();
     //int cellHeight();    
     void drawCubeAt(int row, int col,        float color[]);
-    void drawTileAt(int row, int col, bool standingUp);
+    void drawTileAt(int row, int col, bool standingUp, long double deltaZ = 0.0);
+    void drawBoard();
     void setPerspective();
     void solidCubeWithTexture(GLfloat size);
     GLuint loadTexture( const char * filename, bool wrap );

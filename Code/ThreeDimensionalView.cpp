@@ -60,41 +60,7 @@ void ThreeDimensionalView::resetCamera() {
 
 void ThreeDimensionalView::refresh(){
 	puts("[VIEW] called refresh()");
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glEnable(GL_POLYGON_SMOOTH);
-    
-    
-	int rows = board.getRows();
-	int cols = board.getCols();
-    
-    setPerspective();
-    
-    int middleX = rows * CUBE_SIDE / 2;
-    int middleY = cols * CUBE_SIDE / 2;
-    
-    gluLookAt(middleX * 2, middleY, cameraDistance,         middleX, middleY, 0.0,     -1.0, 0.0, 0.0);
-    glRotated(-15, 0, 1, 0);
-    glRotated(-5, 0, 0, 1);
-    
-	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, light0color);
-    glLightfv(GL_LIGHT0, GL_POSITION, light0position);
-    
-    for (int i = 0; i < rows; ++i){
-        for (int j = 0; j < cols; ++j){
-            Cell c = board.getCellAt(i, j);            
-            if (c.isHollow()){
-                // Do nothing
-            }else if (c.isWeak()){
-                drawCubeAt(i, j,    mat_green);
-            }else if (c.isWinningHole()){
-                // Draw nothing at the winning hole.
-            } else {
-                drawCubeAt(i, j,    mat_blue);
-            }
-        }
-        
-    }
+    drawBoard();
     
 	Tile t = board.getTile();
     vector<Cell> tileCells = t.getCurrentCells();
@@ -136,7 +102,7 @@ void ThreeDimensionalView::drawCubeAt(int row, int col, float color[]){
 	glPopMatrix();
     glDisable(GL_TEXTURE_2D);
 }
-void ThreeDimensionalView::drawTileAt(int row, int col, bool standingUp){
+void ThreeDimensionalView::drawTileAt(int row, int col, bool standingUp, long double deltaZ){
     
     GLfloat mat_ambient[] = { 0.4, 0.4, 0.4, 1.0 };
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
@@ -146,7 +112,7 @@ void ThreeDimensionalView::drawTileAt(int row, int col, bool standingUp){
 	glPushMatrix();
             glEnable(GL_TEXTURE_2D);
             glBindTexture(GL_TEXTURE_2D, texture);
-            glTranslatef(row * CUBE_SIDE + CUBE_SIDE / 2, col * CUBE_SIDE + CUBE_SIDE / 2, CUBE_SIDE / 2 + 0.2 * CUBE_SIDE);
+            glTranslatef(row * CUBE_SIDE + CUBE_SIDE / 2, col * CUBE_SIDE + CUBE_SIDE / 2, CUBE_SIDE / 2 + 0.2 * CUBE_SIDE + deltaZ);
             if (standingUp) {
                 glTranslatef(0, 0, 0.2 * CUBE_SIDE);
             }
@@ -333,3 +299,56 @@ GLuint ThreeDimensionalView::loadTexture( const char * filename, bool wrap ) {
     return ans;
 }
 
+void ThreeDimensionalView::drawBoard() {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glEnable(GL_POLYGON_SMOOTH);
+
+    int rows = board.getRows();
+    int cols = board.getCols();
+    
+    setPerspective();
+    
+    int middleX = rows * CUBE_SIDE / 2;
+    int middleY = cols * CUBE_SIDE / 2;
+    
+    gluLookAt(middleX * 2, middleY, cameraDistance,         middleX, middleY, 0.0,     -1.0, 0.0, 0.0);
+    glRotated(-15, 0, 1, 0);
+    glRotated(-5, 0, 0, 1);
+    
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, light0color);
+    glLightfv(GL_LIGHT0, GL_POSITION, light0position);
+    
+    for (int i = 0; i < rows; ++i){
+        for (int j = 0; j < cols; ++j){
+            Cell c = board.getCellAt(i, j);            
+            if (c.isHollow()){
+                // Do nothing
+            }else if (c.isWeak()){
+                drawCubeAt(i, j,    mat_green);
+            }else if (c.isWinningHole()){
+                // Draw nothing at the winning hole.
+            } else {
+                drawCubeAt(i, j,    mat_blue);
+            }
+        }
+    }
+}
+
+void ThreeDimensionalView::animateStraightFall() {
+	puts("[VIEW] called animateStraightFall()");
+    
+    for (double tick = 0.0; tick < 10; tick += 0.1){
+        drawBoard();
+        
+        Tile t = board.getTile();
+        vector<Cell> tileCells = t.getCurrentCells();
+        for (int k = 0; k < tileCells.size(); ++k){
+            const Cell &c = tileCells[k];
+            printf("Tile is at <%d, %d>\n", c.getRow(), c.getColumn());
+            drawTileAt(c.getRow(), c.getColumn(), t.isStandingUp(), -(tick * tick) * 2);
+        }
+        
+        glutSwapBuffers();
+    }    
+}
