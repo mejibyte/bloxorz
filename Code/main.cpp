@@ -44,7 +44,7 @@ int main (int argc, char * argv[]) {
     
     
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(AbstractView::WIDTH, AbstractView::HEIGHT);
     glutCreateWindow("Bloxorz");
     glutDisplayFunc(display);
