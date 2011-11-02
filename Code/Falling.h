@@ -11,6 +11,7 @@
 #include <cmath>
 #include <iostream>
 #include <GLUT/GLUT.h>
+#include "Board.h"
 
 
 void freeFalling();

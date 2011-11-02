@@ -8,8 +8,8 @@
 
 #include <iostream>
 #include "KeyboardController.h"
-
 #include <OpenGL/OpenGL.h>
+#include "Falling.h"
 #include <OpenGL/gl.h>
 #include <OpenGL/glu.h>
 #include <GLUT/glut.h>
@@ -31,6 +31,11 @@ void specialKeys(int key, int x, int y) {
 void keyboard(unsigned char key, int x, int y){
     controller.normalKeyPressed(key);
 }
+void idle(void){
+    
+    freeFalling();
+    
+}
 
 
 int main (int argc, char * argv[]) {
@@ -46,6 +51,7 @@ int main (int argc, char * argv[]) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(AbstractView::WIDTH, AbstractView::HEIGHT);
+    glutIdleFunc(idle);
     glutCreateWindow("Bloxorz");
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
