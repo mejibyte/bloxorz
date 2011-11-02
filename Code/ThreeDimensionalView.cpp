@@ -135,7 +135,7 @@ void ThreeDimensionalView::drawTileAt(int row, int col){
     GLfloat mat_ambient[] = { 0.4, 0.4, 0.4, 1.0 };
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
     GLfloat low_shininess[] = { 1.0 };
-    GLfloat mat_blue[] = { 0.0, 0.0, 1, 1.0 };
+    GLfloat tile_color[] = { 1.0, 0.2, 0.3, 1.0 };
     
 	glPushMatrix();
         //para rotar el tablero
@@ -144,7 +144,7 @@ void ThreeDimensionalView::drawTileAt(int row, int col){
             glScalef(1., 3.5, 1.);
             
             glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
-            glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_blue);
+            glMaterialfv(GL_FRONT, GL_DIFFUSE, tile_color);
             glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
             glMaterialfv(GL_FRONT, GL_SHININESS, low_shininess);
             
