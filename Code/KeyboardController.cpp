@@ -96,6 +96,15 @@ void KeyboardController::normalKeyPressed(unsigned char key){
         case 'u':		
             view->cameraUp();
             break;
+        case 'j':		
+            view->cameraDown();
+            break;
+        case 'h':		
+            view->cameraLeft();
+            break;
+        case 'k':		
+            view->cameraRight();
+            break;
        
 	}
 }
