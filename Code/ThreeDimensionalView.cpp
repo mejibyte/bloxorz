@@ -15,11 +15,13 @@ GLfloat mat_gray[] = {0.5, 0.5, 0.5, 1.0};
 
 GLfloat ambientColor[] = {0.4f, 0.4f, 0.4f, 1.0f}; 
 GLfloat light0color[] = { 1.0, 1.0, 1.0, 0.0 };
-GLfloat light0position[] = { 20.0, 100.0, 40.0, 0.0 };
+GLfloat light0position[] = { 20.0, 200.0, 40.0, 0.0 };
 
 // Texture handler
 GLuint texture;
 GLuint textureFloor;
+
+const double TIME_DELTA = 0.005;
 
 
 ThreeDimensionalView::ThreeDimensionalView(){
@@ -87,8 +89,7 @@ void ThreeDimensionalView::drawCubeAt(int row, int col, float color[]){
     GLfloat mat_ambient[] = { 0.4, 0.4, 0.4, 1.0 };
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
     GLfloat low_shininess[] = { 2.0 };
-    glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, textureFloor);
+    glDisable(GL_TEXTURE_2D);
 	glPushMatrix(); 
         glTranslatef(row * CUBE_SIDE + CUBE_SIDE / 2, col * CUBE_SIDE + CUBE_SIDE / 2, 0);
         glScalef(CUBE_SIDE, CUBE_SIDE, 0.2 * CUBE_SIDE);
@@ -101,7 +102,6 @@ void ThreeDimensionalView::drawCubeAt(int row, int col, float color[]){
         glutSolidCube(1.);   
     
 	glPopMatrix();
-    glDisable(GL_TEXTURE_2D);
 }
 
 
@@ -365,7 +365,7 @@ void ThreeDimensionalView::drawBoard() {
 void ThreeDimensionalView::animateStraightFall() {
 	puts("[VIEW] called animateStraightFall()");
     
-    for (double tick = 0.0; tick < 10; tick += 0.1){
+    for (double tick = 0.0; tick < 1; tick += TIME_DELTA){
         drawBoard();
         
         Tile t = board.getTile();
@@ -373,7 +373,57 @@ void ThreeDimensionalView::animateStraightFall() {
         for (int k = 0; k < tileCells.size(); ++k){
             const Cell &c = tileCells[k];
             printf("Tile is at <%d, %d>\n", c.getRow(), c.getColumn());
-            drawTileAt(c.getRow(), c.getColumn(), t.isStandingUp(), -(tick * tick) * 2);
+            drawTileAt(c.getRow(), c.getColumn(), t.isStandingUp(), -(tick * tick) * 200);
+        }
+        
+        glutSwapBuffers();
+    }    
+}
+
+
+void ThreeDimensionalView::drawTileWithRotation(int row, int col, bool standingUp, long double deltaZ, double angleOfRotation){
+    
+    GLfloat mat_ambient[] = { 0.4, 0.4, 0.4, 1.0 };
+    GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
+    GLfloat low_shininess[] = { 1.0 };
+    GLfloat tile_color[] = { 0.0, 0.4, 1., 0.5 };
+    
+	glPushMatrix();
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glTranslatef(row * CUBE_SIDE + CUBE_SIDE / 2, col * CUBE_SIDE + CUBE_SIDE / 2, CUBE_SIDE / 2 + 0.2 * CUBE_SIDE + deltaZ);
+    if (standingUp) {
+        glTranslatef(0, 0, 0.2 * CUBE_SIDE);
+    }
+    
+    glRotated(angleOfRotation, 0, 0, 1);
+    
+    glScalef(CUBE_SIDE, CUBE_SIDE, CUBE_SIDE + CUBE_SIDE * standingUp);
+    glTexCoord2f(1.0, 0.0);    
+    
+    glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, tile_color);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, low_shininess);
+    
+    solidCubeWithTexture(1.);       
+    glDisable(GL_TEXTURE_2D);
+	glPopMatrix();
+}
+
+
+void ThreeDimensionalView::animateRotatingFall() {
+	puts("[VIEW] called animateRotatingFall()");
+    
+    for (double tick = 0.0; tick < 1; tick += TIME_DELTA){
+        drawBoard();
+        
+        Tile t = board.getTile();
+        vector<Cell> tileCells = t.getCurrentCells();
+        for (int k = 0; k < tileCells.size(); ++k){
+            const Cell &c = tileCells[k];
+            printf("Tile is at <%d, %d>\n", c.getRow(), c.getColumn());
+            drawTileWithRotation(c.getRow(), c.getColumn(), t.isStandingUp(), -(tick * tick) * 200, 2 * 360 * tick);
         }
         
         glutSwapBuffers();

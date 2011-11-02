@@ -38,12 +38,14 @@ public:
     void resetCamera();
     void clearMessage();
     void animateStraightFall();    
+    void animateRotatingFall();
     
 private:
     //int cellWidth();
     //int cellHeight();    
     void drawCubeAt(int row, int col,        float color[]);
     void drawTileAt(int row, int col, bool standingUp, long double deltaZ = 0.0);
+    void drawTileWithRotation(int row, int col, bool standingUp, long double deltaZ = 0.0, double angleOfRotation = 0);     
     void drawBoard();
     void drawTileFalling(int row, int col, bool standingUp);
     void setPerspective();

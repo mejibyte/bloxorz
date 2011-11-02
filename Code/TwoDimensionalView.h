@@ -24,6 +24,7 @@ public:
 	void cameraRight();
     void resetCamera();
     void animateStraightFall();
+    void animateRotatingFall();
     
 private:
     int cellWidth();
