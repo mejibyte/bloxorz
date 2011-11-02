@@ -1,5 +1,6 @@
 #include "ThreeDimensionalView.h"
 
+
 GLfloat distancia = 25.0;
 GLfloat incremento = 0.1;
 GLfloat angulo = 0.0;
