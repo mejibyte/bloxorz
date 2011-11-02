@@ -18,6 +18,7 @@ GLfloat light0position[] = { 20.0, 100.0, 40.0, 0.0 };
 
 // Texture handler
 GLuint texture;
+GLuint textureFloor;
 
 
 ThreeDimensionalView::ThreeDimensionalView(){
@@ -28,7 +29,9 @@ ThreeDimensionalView::ThreeDimensionalView(){
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     glEnable(GL_NORMALIZE);
-    texture = loadTexture("tex_wood.bmp", true);
+    texture = loadTexture("metal.bmp", true);
+    textureFloor = loadTexture("tex_wood.bmp", true);
+    
 }
 
 ThreeDimensionalView::ThreeDimensionalView(Board board){
@@ -58,8 +61,8 @@ void ThreeDimensionalView::resetCamera() {
 void ThreeDimensionalView::refresh(){
 	puts("[VIEW] called refresh()");
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, texture);
+    //glEnable(GL_TEXTURE_2D);
+    //glBindTexture(GL_TEXTURE_2D, texture);
     
     
 	int rows = board.getRows();
@@ -104,7 +107,7 @@ void ThreeDimensionalView::refresh(){
     }
 
 	glutSwapBuffers();
-    glDisable(GL_TEXTURE_2D);    
+    //glDisable(GL_TEXTURE_2D);    
 
 }
 
@@ -120,8 +123,11 @@ void ThreeDimensionalView::drawCubeAt(int row, int col, float color[]){
     GLfloat mat_ambient[] = { 0.4, 0.4, 0.4, 1.0 };
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
     GLfloat low_shininess[] = { 2.0 };
-    
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, textureFloor);
 	glPushMatrix(); 
+        //glEnable(GL_TEXTURE_2D);
+        //glBindTexture(GL_TEXTURE_2D, textureFloor);
         glTranslatef(row * CUBE_SIDE + CUBE_SIDE / 2, col * CUBE_SIDE + CUBE_SIDE / 2, 0);
         glScalef(CUBE_SIDE, CUBE_SIDE, 0.2 * CUBE_SIDE);
 
@@ -130,10 +136,11 @@ void ThreeDimensionalView::drawCubeAt(int row, int col, float color[]){
         glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
         glMaterialfv(GL_FRONT, GL_SHININESS, low_shininess);
 
-        glutSolidCube(1.);       
+        glutSolidCube(1.);   
+        //glDisable(GL_TEXTURE_2D);
     
 	glPopMatrix();
-    
+    glDisable(GL_TEXTURE_2D);
 }
 void ThreeDimensionalView::drawTileAt(int row, int col, bool standingUp){
     
