@@ -35,20 +35,29 @@ void ThreeDimensionalView::setBoard(Board someBoard) {
     board = someBoard;
 }
 
+void ThreeDimensionalView::setPerspective() {
+    glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+    
+    glFrustum (-1.0, 1.0, -1.0, 1.0, 1.5, 300.0);
+    
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+}
+
 void ThreeDimensionalView::resetCamera() {
     cameraDistance = max(board.getRows(), board.getCols()) * CUBE_SIDE;
     printf("Camera distance = %lf\n", cameraDistance);
 }
 
 void ThreeDimensionalView::refresh(){
-    
 	puts("[VIEW] called refresh()");
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
 	int rows = board.getRows();
 	int cols = board.getCols();
     
-	glLoadIdentity ();
+    setPerspective();
     
     int middleX = rows * CUBE_SIDE / 2;
     int middleY = cols * CUBE_SIDE / 2;
@@ -85,23 +94,14 @@ void ThreeDimensionalView::refresh(){
         printf("Tile is at <%d, %d>\n", c.getRow(), c.getColumn());
         drawTileAt(c.getRow(), c.getColumn(), t.isStandingUp());
     }
-    
-	glutSwapBuffers();
-    
+
+	glutSwapBuffers();    
 }
 
 
-void ThreeDimensionalView::reshape(GLsizei w, GLsizei h) {
-    
+void ThreeDimensionalView::reshape(GLsizei w, GLsizei h) {    
 	glViewport(0, 0, w, h);
-    
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-    
-    glFrustum (-1.0, 1.0, -1.0, 1.0, 1.5, 300.0);
-    
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+    setPerspective();
 }
 
 void ThreeDimensionalView::drawCubeAt(int row, int col, float color[]){
@@ -148,6 +148,15 @@ void ThreeDimensionalView::drawTileAt(int row, int col, bool standingUp){
 }
 
 void ThreeDimensionalView::setMessage(const char * message) {
+    glPushMatrix();
+
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluOrtho2D(0.0, WIDTH, HEIGHT, 0.0);	// Left, Right, Bottom, Top corners    
+    
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    
     int textWidth = 0;
     for (const char * c = message; *c; c++){
         textWidth += glutBitmapWidth(GLUT_BITMAP_HELVETICA_18, *c);
@@ -156,16 +165,16 @@ void ThreeDimensionalView::setMessage(const char * message) {
     int x = (WIDTH - textWidth) / 2;
     int y = HEIGHT / 2;
     
-    glColor3f(1, 1, 1);
+    glColor3f(0.8, 0.8, 0.8);
     glRasterPos2f(x, y);    
     for (const char * c = message; *c; c++){
         glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *c);
     }
+    glPopMatrix();
     glutSwapBuffers();
 }
 
 void ThreeDimensionalView::cameraUp() {
-    puts("[VIEW] Called cameraUp\n");
     cameraDistance -= incremento;
     cameraDistance = max(cameraDistance, 10.0);
     refresh();

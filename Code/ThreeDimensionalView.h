@@ -40,5 +40,6 @@ private:
     //int cellHeight();    
     void drawCubeAt(int row, int col,        float color[]);
     void drawTileAt(int row, int col, bool standingUp);
+    void setPerspective();
     string message;
 };
