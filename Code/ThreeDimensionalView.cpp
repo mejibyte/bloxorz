@@ -12,7 +12,7 @@ GLfloat mat_red[] = { 0.8, 0.2, 0.1, 1.0 };
 GLfloat mat_green[] = { 0.1, 0.8, 0.1, 1.0 };
 GLfloat mat_gray[] = {0.5, 0.5, 0.5, 1.0};
 
-GLfloat ambientColor[] = {0.4f, 0.4f, 0.4f, 1.0f}; //Color(0.2, 0.2, 0.2)
+GLfloat ambientColor[] = {0.4f, 0.4f, 0.4f, 1.0f}; 
 GLfloat light0color[] = { 1.0, 1.0, 1.0, 0.0 };
 GLfloat light0position[] = { 20.0, 100.0, 40.0, 0.0 };
 
@@ -61,8 +61,6 @@ void ThreeDimensionalView::resetCamera() {
 void ThreeDimensionalView::refresh(){
 	puts("[VIEW] called refresh()");
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    //glEnable(GL_TEXTURE_2D);
-    //glBindTexture(GL_TEXTURE_2D, texture);
     
     
 	int rows = board.getRows();
@@ -85,7 +83,6 @@ void ThreeDimensionalView::refresh(){
         for (int j = 0; j < cols; ++j){
             Cell c = board.getCellAt(i, j);            
             if (c.isHollow()){
-                // Do nothing
             }else if (c.isWeak()){
                 drawCubeAt(i, j,    mat_green);
             }else if (c.isWinningHole()){
@@ -97,7 +94,6 @@ void ThreeDimensionalView::refresh(){
         
     }
     
-    //aquí va el codigo del tile
 	Tile t = board.getTile();
     vector<Cell> tileCells = t.getCurrentCells();
     for (int k = 0; k < tileCells.size(); ++k){
@@ -107,7 +103,6 @@ void ThreeDimensionalView::refresh(){
     }
 
 	glutSwapBuffers();
-    //glDisable(GL_TEXTURE_2D);    
 
 }
 
@@ -126,8 +121,6 @@ void ThreeDimensionalView::drawCubeAt(int row, int col, float color[]){
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, textureFloor);
 	glPushMatrix(); 
-        //glEnable(GL_TEXTURE_2D);
-        //glBindTexture(GL_TEXTURE_2D, textureFloor);
         glTranslatef(row * CUBE_SIDE + CUBE_SIDE / 2, col * CUBE_SIDE + CUBE_SIDE / 2, 0);
         glScalef(CUBE_SIDE, CUBE_SIDE, 0.2 * CUBE_SIDE);
 
@@ -137,7 +130,6 @@ void ThreeDimensionalView::drawCubeAt(int row, int col, float color[]){
         glMaterialfv(GL_FRONT, GL_SHININESS, low_shininess);
 
         glutSolidCube(1.);   
-        //glDisable(GL_TEXTURE_2D);
     
 	glPopMatrix();
     glDisable(GL_TEXTURE_2D);
@@ -209,6 +201,7 @@ void ThreeDimensionalView::cameraUp() {
 
 void ThreeDimensionalView::cameraDown() {
     cameraDistance += incremento;
+    cameraDistance = min(cameraDistance, 200.0);
 	refresh();
 }
 
