@@ -27,7 +27,8 @@ ThreeDimensionalView::ThreeDimensionalView(){
     glShadeModel(GL_SMOOTH);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
-    glEnable(GL_NORMALIZE);    
+    glEnable(GL_NORMALIZE);
+    texture = loadTexture("tex_wood.bmp", true);
 }
 
 ThreeDimensionalView::ThreeDimensionalView(Board board){
@@ -57,6 +58,9 @@ void ThreeDimensionalView::resetCamera() {
 void ThreeDimensionalView::refresh(){
 	puts("[VIEW] called refresh()");
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    
     
 	int rows = board.getRows();
 	int cols = board.getCols();
@@ -99,7 +103,9 @@ void ThreeDimensionalView::refresh(){
         drawTileAt(c.getRow(), c.getColumn(), t.isStandingUp());
     }
 
-	glutSwapBuffers();    
+	glutSwapBuffers();
+    glDisable(GL_TEXTURE_2D);    
+
 }
 
 
@@ -110,9 +116,7 @@ void ThreeDimensionalView::reshape(GLsizei w, GLsizei h) {
 
 void ThreeDimensionalView::drawCubeAt(int row, int col, float color[]){
 
-	glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, texture);
-    
+	
     GLfloat mat_ambient[] = { 0.4, 0.4, 0.4, 1.0 };
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
     GLfloat low_shininess[] = { 2.0 };
@@ -126,10 +130,9 @@ void ThreeDimensionalView::drawCubeAt(int row, int col, float color[]){
         glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
         glMaterialfv(GL_FRONT, GL_SHININESS, low_shininess);
 
-        solidCubeWithTexture(1.);       
+        glutSolidCube(1.);       
     
 	glPopMatrix();
-    glDisable(GL_TEXTURE_2D);    
     
 }
 void ThreeDimensionalView::drawTileAt(int row, int col, bool standingUp){
@@ -147,6 +150,8 @@ void ThreeDimensionalView::drawTileAt(int row, int col, bool standingUp){
             }
             
             glScalef(CUBE_SIDE, CUBE_SIDE, CUBE_SIDE + CUBE_SIDE * standingUp);
+            glTexCoord2f(0.0, 0.0);    
+
             glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
             glMaterialfv(GL_FRONT, GL_DIFFUSE, tile_color);
             glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
@@ -155,6 +160,7 @@ void ThreeDimensionalView::drawTileAt(int row, int col, bool standingUp){
             solidCubeWithTexture(1.);       
 
 	glPopMatrix();
+
     
     glDisable(GL_TEXTURE_2D);    
 
@@ -258,3 +264,65 @@ void ThreeDimensionalView::solidCubeWithTexture(GLfloat size){
         glEnd();
     }
 }
+
+void ThreeDimensionalView::loadTextureFromFile(char *filename)
+{    
+	glClearColor (0.0, 0.0, 0.0, 0.0);
+	glShadeModel(GL_FLAT);
+	glEnable(GL_DEPTH_TEST);
+    
+	RgbImage theTexMap( filename );
+    
+	// Pixel alignment: each row is word aligned (aligned to a 4 byte boundary)
+	//    Therefore, no need to call glPixelStore( GL_UNPACK_ALIGNMENT, ... );
+    
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    
+	gluBuild2DMipmaps(GL_TEXTURE_2D, 3,theTexMap.GetNumCols(), theTexMap.GetNumRows(),
+                      GL_RGB, GL_UNSIGNED_BYTE, theTexMap.ImageData() );
+    
+}
+
+
+GLuint ThreeDimensionalView::loadTexture( const char * filename, bool wrap ) {
+    GLuint ans;
+    
+    glShadeModel(GL_FLAT);
+	glEnable(GL_DEPTH_TEST);
+    RgbImage theTexMap( filename );
+    
+    
+    // allocate a texture name
+    glGenTextures( 1, &ans );
+    
+    // select our current texture
+    glBindTexture( GL_TEXTURE_2D, ans );
+    
+    // select modulate to mix texture with color for shading
+    glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
+    
+    // when texture area is small, bilinear filter the closest mipmap
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST );
+    // when texture area is large, bilinear filter the first mipmap
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+    //	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    //	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    
+    
+    // if wrap is true, the texture wraps over at the edges (repeat)
+    //       ... false, the texture ends at the edges (clamp)
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,
+                    wrap ? GL_REPEAT : GL_CLAMP );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,
+                    wrap ? GL_REPEAT : GL_CLAMP );
+    
+    // build our texture mipmaps
+	gluBuild2DMipmaps(GL_TEXTURE_2D, 3,theTexMap.GetNumCols(), theTexMap.GetNumRows(),
+                      GL_RGB, GL_UNSIGNED_BYTE, theTexMap.ImageData() );
+    
+    return ans;
+}
+

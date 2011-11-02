@@ -46,5 +46,7 @@ private:
     void drawTileAt(int row, int col, bool standingUp);
     void setPerspective();
     void solidCubeWithTexture(GLfloat size);
+    GLuint loadTexture( const char * filename, bool wrap );
+    void loadTextureFromFile(char *filename);
     string message;
 };
