@@ -141,7 +141,7 @@ void ThreeDimensionalView::drawTileAt(int row, int col){
         //para rotar el tablero
         glTranslatef(row, 0., col);
         glPushMatrix();
-            glScalef(1., 3.5, 1.);
+            glScalef(1.5, 1., 2.);
             
             glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
             glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_blue);
