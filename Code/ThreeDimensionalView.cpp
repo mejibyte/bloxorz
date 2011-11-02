@@ -129,9 +129,12 @@ void ThreeDimensionalView::drawCubeAt(int row, int col, float color[]){
         solidCubeWithTexture(1.);       
     
 	glPopMatrix();
+    glDisable(GL_TEXTURE_2D);    
     
 }
 void ThreeDimensionalView::drawTileAt(int row, int col, bool standingUp){
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture);
     GLfloat mat_ambient[] = { 0.4, 0.4, 0.4, 1.0 };
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
     GLfloat low_shininess[] = { 1.0 };
@@ -149,9 +152,12 @@ void ThreeDimensionalView::drawTileAt(int row, int col, bool standingUp){
             glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
             glMaterialfv(GL_FRONT, GL_SHININESS, low_shininess);
             
-            glutSolidCube(1.);       
+            solidCubeWithTexture(1.);       
 
 	glPopMatrix();
+    
+    glDisable(GL_TEXTURE_2D);    
+
 }
 
 void ThreeDimensionalView::setMessage(const char * message) {
