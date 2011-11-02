@@ -71,8 +71,8 @@ bool RgbImage::LoadBmpFile( const char* filename )
 	int mChar = fgetc( infile );
 	if ( bChar=='B' && mChar=='M' ) {			// If starts with "BM" for "BitMap"
 		skipChars( infile, 4+2+2+4+4 );			// Skip 4 fields we don't care about
-		NumCols = readLong( infile );
-		NumRows = readLong( infile );
+		NumCols = (int)readLong( infile );
+		NumRows = (int)readLong( infile );
 		skipChars( infile, 2 );					// Skip one field
 		int bitsPerPixel = readShort( infile );
 		skipChars( infile, 4+4+4+4+4+4 );		// Skip 6 more fields

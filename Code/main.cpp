@@ -56,6 +56,7 @@ int main (int argc, char * argv[]) {
 
     glutMainLoop();
     
+    
     controller.cleanUp();
     return 0;
 }
