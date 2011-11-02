@@ -13,6 +13,7 @@
 #include <string>
 #include <vector>
 #include <cmath>
+#include <cassert>
 
 
 #include "AbstractView.h"

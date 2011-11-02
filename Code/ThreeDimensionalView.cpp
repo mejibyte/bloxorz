@@ -1,16 +1,12 @@
 #include "ThreeDimensionalView.h"
 
+const int CUBE_SIDE = 10;
 
-GLfloat distancia = 25.0;
+GLfloat cameraDistance = 200.0;
 GLfloat incremento = 0.1;
 GLfloat angulo = 0.0;
 GLfloat incrementoAngulo = 0.1;
 GLfloat Xpos, Zpos;
-
-GLfloat ambient[] = { 0.0, 0.0, 0.0, 0.0 };	
-GLfloat diffuse[] = { 1.0, 1.0, 1.0, 0.0 };
-GLfloat specular[] = { 1.0, 1.0, 1.0, 0.0 };
-GLfloat position[] = { 5.0, 5.0, 5.0, 0.0 };
 
 GLfloat mat_blue[] = { 0.1, 0.2, 0.8, 1.0 };
 GLfloat mat_red[] = { 0.8, 0.2, 0.1, 1.0 };
@@ -19,7 +15,7 @@ GLfloat mat_gray[] = {0.5, 0.5, 0.5, 1.0};
 
 GLfloat ambientColor[] = {0.4f, 0.4f, 0.4f, 1.0f}; //Color(0.2, 0.2, 0.2)
 GLfloat light0color[] = { 1.0, 1.0, 1.0, 0.0 };
-GLfloat light0position[] = { 15.0, 5.0, 15.0, 0.0 };
+GLfloat light0position[] = { 20.0, 100.0, 40.0, 0.0 };
 
 GLfloat rowPos, colPos;
 
@@ -40,6 +36,7 @@ ThreeDimensionalView::ThreeDimensionalView(Board board){
 
 void ThreeDimensionalView::setBoard(Board someBoard) {
     board = someBoard;
+    cameraDistance = max(board.getRows(), board.getCols()) * CUBE_SIDE;
 }
 
 void ThreeDimensionalView::refresh(){
@@ -50,13 +47,14 @@ void ThreeDimensionalView::refresh(){
 	int rows = board.getRows();
 	int cols = board.getCols();
     
-	glLoadIdentity (); //Para manejar la camara            
-    GLfloat x = distancia * sin(angulo);
-    GLfloat z = distancia * cos(angulo);
-    gluLookAt (x, 15.0, z, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	glLoadIdentity ();
     
+    int middleX = rows * CUBE_SIDE / 2;
+    int middleY = cols * CUBE_SIDE / 2;
     
-    GLfloat scala = 1.;
+    gluLookAt(middleX * 2, middleY, cameraDistance,         middleX, middleY, 0.0,     -1.0, 0.0, 0.0);
+    glRotated(-15, 0, 1, 0);
+    glRotated(-5, 0, 0, 1);
     
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, light0color);
@@ -64,19 +62,16 @@ void ThreeDimensionalView::refresh(){
     
     for (int i = 0; i < rows; ++i){
         for (int j = 0; j < cols; ++j){
-            Cell c = board.getCellAt(i, j);
-			rowPos=i*scala;
-			colPos=j*scala;
-            
+            Cell c = board.getCellAt(i, j);            
             if (c.isHollow()){
                 // Do nothing
             }else if (c.isWeak()){
                 drawCubeAt(i, j,    mat_green);
             }else if (c.isWinningHole()){
                 drawCubeAt(i, j,    mat_red);
-            }else             
-                drawCubeAt(rowPos,colPos, mat_blue);		
-            
+            } else {
+                drawCubeAt(i, j,    mat_blue);
+            }
         }
         
     }
@@ -117,10 +112,9 @@ void ThreeDimensionalView::drawCubeAt(int row, int col, float color[]){
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
     GLfloat low_shininess[] = { 2.0 };
     
-	glPushMatrix();
-
-        glTranslatef(row, 0., col);
-        glScalef(1., 0.5, 1.);
+	glPushMatrix(); 
+        glTranslatef(row * CUBE_SIDE + CUBE_SIDE / 2, col * CUBE_SIDE + CUBE_SIDE / 2, 0);
+        glScalef(CUBE_SIDE, CUBE_SIDE, 0.2 * CUBE_SIDE);
 
         glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
         glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
@@ -139,22 +133,15 @@ void ThreeDimensionalView::drawTileAt(int row, int col, bool down, bool up){
     GLfloat tile_color[] = { 0.0, 0.4, 1., 0.5 };
     
 	glPushMatrix();
-        //para rotar el tablero
-        glTranslatef(row, 1., col);
-        glPushMatrix();
-    if(up){
-            glScalef(1, 2., 1);
-    }else {
-        glScalef(1, 1., 1);
-    }
+            glTranslatef(row * CUBE_SIDE + CUBE_SIDE / 2, col * CUBE_SIDE + CUBE_SIDE / 2, 0);
+            glScalef(CUBE_SIDE, CUBE_SIDE, CUBE_SIDE + CUBE_SIDE * up);
             glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
             glMaterialfv(GL_FRONT, GL_DIFFUSE, tile_color);
             glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
             glMaterialfv(GL_FRONT, GL_SHININESS, low_shininess);
             
             glutSolidCube(1.);       
-        glPopMatrix();
-    
+
 	glPopMatrix();
 }
 
@@ -176,12 +163,12 @@ void ThreeDimensionalView::setMessage(const char * message) {
 }
 
 void ThreeDimensionalView::cameraUp() {
-    distancia -= incremento;
+    cameraDistance -= incremento;
     refresh();
 }
 
 void ThreeDimensionalView::cameraDown() {
-    distancia += incremento;
+    cameraDistance += incremento;
 	refresh();
 }
 
