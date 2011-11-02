@@ -38,6 +38,6 @@ private:
     //int cellWidth();
     //int cellHeight();    
     void drawCubeAt(int row, int col,        float color[]);
-    void drawTileAt(int row, int col, bool down, bool up);
+    void drawTileAt(int row, int col, bool standingUp);
     string message;
 };

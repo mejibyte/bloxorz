@@ -85,7 +85,7 @@ void ThreeDimensionalView::refresh(){
     for (int k = 0; k < tileCells.size(); ++k){
         const Cell &c = tileCells[k];
         printf("Tile is at <%d, %d>\n", c.getRow(), c.getColumn());
-        drawTileAt(c.getRow(), c.getColumn(),t.isLayingDown(),t.isStandingUp());
+        drawTileAt(c.getRow(), c.getColumn(), t.isStandingUp());
     }
     
 	glutSwapBuffers();
@@ -126,15 +126,19 @@ void ThreeDimensionalView::drawCubeAt(int row, int col, float color[]){
 	glPopMatrix();
     
 }
-void ThreeDimensionalView::drawTileAt(int row, int col, bool down, bool up){
+void ThreeDimensionalView::drawTileAt(int row, int col, bool standingUp){
     GLfloat mat_ambient[] = { 0.4, 0.4, 0.4, 1.0 };
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
     GLfloat low_shininess[] = { 1.0 };
     GLfloat tile_color[] = { 0.0, 0.4, 1., 0.5 };
     
 	glPushMatrix();
-            glTranslatef(row * CUBE_SIDE + CUBE_SIDE / 2, col * CUBE_SIDE + CUBE_SIDE / 2, 0);
-            glScalef(CUBE_SIDE, CUBE_SIDE, CUBE_SIDE + CUBE_SIDE * up);
+            glTranslatef(row * CUBE_SIDE + CUBE_SIDE / 2, col * CUBE_SIDE + CUBE_SIDE / 2, CUBE_SIDE / 2 + 0.2 * CUBE_SIDE);
+            if (standingUp) {
+                glTranslatef(0, 0, 0.2 * CUBE_SIDE);
+            }
+            
+            glScalef(CUBE_SIDE, CUBE_SIDE, CUBE_SIDE + CUBE_SIDE * standingUp);
             glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
             glMaterialfv(GL_FRONT, GL_DIFFUSE, tile_color);
             glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
