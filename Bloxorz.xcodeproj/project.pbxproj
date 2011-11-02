@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		073F951914609F9E00B82921 /* ThreeDimensionalView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 073F951714609F9E00B82921 /* ThreeDimensionalView.cpp */; };
+		07B5985714611D2900CB1F95 /* Falling.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B5985614611D2900CB1F95 /* Falling.cpp */; };
 		32578CF1141841D40016AEB7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32578CF0141841D40016AEB7 /* main.cpp */; };
 		32953D7D141DA991005517FC /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32953D7B141DA991005517FC /* Board.cpp */; };
 		32953D84141DB64E005517FC /* Tile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32953D82141DB64D005517FC /* Tile.cpp */; };
@@ -36,6 +37,8 @@
 /* Begin PBXFileReference section */
 		073F951714609F9E00B82921 /* ThreeDimensionalView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreeDimensionalView.cpp; sourceTree = "<group>"; };
 		073F951814609F9E00B82921 /* ThreeDimensionalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreeDimensionalView.h; sourceTree = "<group>"; };
+		07B5985414611D1200CB1F95 /* Falling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Falling.h; sourceTree = "<group>"; };
+		07B5985614611D2900CB1F95 /* Falling.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Falling.cpp; sourceTree = "<group>"; };
 		32578CE3141841650016AEB7 /* Bloxorz */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Bloxorz; sourceTree = BUILT_PRODUCTS_DIR; };
 		32578CF0141841D40016AEB7 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		32953D7B141DA991005517FC /* Board.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Board.cpp; sourceTree = "<group>"; };
@@ -141,6 +144,8 @@
 				073F951814609F9E00B82921 /* ThreeDimensionalView.h */,
 				32953D91141DB9C5005517FC /* TwoDimensionalView.cpp */,
 				32953D92141DB9C5005517FC /* TwoDimensionalView.h */,
+				07B5985414611D1200CB1F95 /* Falling.h */,
+				07B5985614611D2900CB1F95 /* Falling.cpp */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -215,6 +220,7 @@
 				32953D90141DB880005517FC /* KeyboardController.cpp in Sources */,
 				32953D93141DB9C5005517FC /* TwoDimensionalView.cpp in Sources */,
 				073F951914609F9E00B82921 /* ThreeDimensionalView.cpp in Sources */,
+				07B5985714611D2900CB1F95 /* Falling.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
