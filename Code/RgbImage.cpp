@@ -18,15 +18,13 @@
  *
  */
 
-/*#include <OpenGL/OpenGL.h>
+#include <OpenGL/OpenGL.h>
 #include <OpenGL/gl.h>
 #include <OpenGL/glu.h>
-#include <GLUT/glut.h>*/
+#include <GLUT/glut.h>
 
 #include "RgbImage.h"
 #include <stdlib.h>
-#include <GL/glut.h>
-
 
 
 RgbImage::RgbImage( int numRows, int numCols )
