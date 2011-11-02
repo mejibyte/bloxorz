@@ -20,6 +20,7 @@
 		32953D95141DBB99005517FC /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32953D94141DBB98005517FC /* GLUT.framework */; };
 		32953D97141DBB9D005517FC /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32953D96141DBB9D005517FC /* OpenGL.framework */; };
 		32953D99141DBC0B005517FC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32953D98141DBC0B005517FC /* Cocoa.framework */; };
+		413AAAD6146171D200ECCD96 /* RgbImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 413AAAD5146171D200ECCD96 /* RgbImage.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -59,6 +60,8 @@
 		32953D96141DBB9D005517FC /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		32953D98141DBC0B005517FC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		32953D9B141DBD80005517FC /* 1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 1.txt; path = boards/1.txt; sourceTree = SOURCE_ROOT; };
+		413AAAD4146171D200ECCD96 /* RgbImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RgbImage.h; sourceTree = "<group>"; };
+		413AAAD5146171D200ECCD96 /* RgbImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RgbImage.cpp; sourceTree = "<group>"; };
 		A1F8201E1421166A00E909C4 /* 2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 2.txt; path = boards/2.txt; sourceTree = SOURCE_ROOT; };
 		A1F8201F1421166A00E909C4 /* 3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 3.txt; path = boards/3.txt; sourceTree = SOURCE_ROOT; };
 		A1F820201421166A00E909C4 /* 4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 4.txt; path = boards/4.txt; sourceTree = SOURCE_ROOT; };
@@ -145,6 +148,8 @@
 				32953D91141DB9C5005517FC /* TwoDimensionalView.cpp */,
 				32953D92141DB9C5005517FC /* TwoDimensionalView.h */,
 				07B5985414611D1200CB1F95 /* Falling.h */,
+				413AAAD4146171D200ECCD96 /* RgbImage.h */,
+				413AAAD5146171D200ECCD96 /* RgbImage.cpp */,
 				07B5985614611D2900CB1F95 /* Falling.cpp */,
 			);
 			name = Views;
@@ -221,6 +226,7 @@
 				32953D93141DB9C5005517FC /* TwoDimensionalView.cpp in Sources */,
 				073F951914609F9E00B82921 /* ThreeDimensionalView.cpp in Sources */,
 				07B5985714611D2900CB1F95 /* Falling.cpp in Sources */,
+				413AAAD6146171D200ECCD96 /* RgbImage.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
