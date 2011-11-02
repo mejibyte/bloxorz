@@ -83,10 +83,11 @@ void ThreeDimensionalView::refresh(){
         for (int j = 0; j < cols; ++j){
             Cell c = board.getCellAt(i, j);            
             if (c.isHollow()){
+                // Do nothing
             }else if (c.isWeak()){
                 drawCubeAt(i, j,    mat_green);
             }else if (c.isWinningHole()){
-                drawCubeAt(i, j,    mat_red);
+                // Draw nothing at the winning hole.
             } else {
                 drawCubeAt(i, j,    mat_blue);
             }
