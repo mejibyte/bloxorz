@@ -45,6 +45,7 @@ private:
     void drawCubeAt(int row, int col,        float color[]);
     void drawTileAt(int row, int col, bool standingUp, long double deltaZ = 0.0);
     void drawBoard();
+    void drawTileFalling(int row, int col, bool standingUp);
     void setPerspective();
     void solidCubeWithTexture(GLfloat size);
     GLuint loadTexture( const char * filename, bool wrap );

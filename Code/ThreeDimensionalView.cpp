@@ -1,4 +1,5 @@
  #include "ThreeDimensionalView.h"
+#include "Falling.h"
 
 const int CUBE_SIDE = 10;
 
@@ -102,6 +103,8 @@ void ThreeDimensionalView::drawCubeAt(int row, int col, float color[]){
 	glPopMatrix();
     glDisable(GL_TEXTURE_2D);
 }
+
+
 void ThreeDimensionalView::drawTileAt(int row, int col, bool standingUp, long double deltaZ){
     
     GLfloat mat_ambient[] = { 0.4, 0.4, 0.4, 1.0 };
@@ -128,10 +131,34 @@ void ThreeDimensionalView::drawTileAt(int row, int col, bool standingUp, long do
             solidCubeWithTexture(1.);       
             glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
-
+}
+void ThreeDimensionalView::drawTileFalling(int row, int col, bool standingUp){
     
-        
-
+    GLfloat mat_ambient[] = { 0.4, 0.4, 0.4, 1.0 };
+    GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
+    GLfloat low_shininess[] = { 1.0 };
+    GLfloat tile_color[] = { 0.0, 0.4, 1., 0.5 };
+    
+	glPushMatrix();
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    
+    glTranslatef(row * CUBE_SIDE + CUBE_SIDE / 2, col * CUBE_SIDE + CUBE_SIDE / 2, CUBE_SIDE / 2 + 0.2 * CUBE_SIDE);
+    if (standingUp) {
+        glTranslatef(0, 0, 0.2 * CUBE_SIDE);
+    }
+    
+    glScalef(CUBE_SIDE, CUBE_SIDE, CUBE_SIDE + CUBE_SIDE * standingUp);
+    glTexCoord2f(1.0, 0.0);    
+    
+    glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, tile_color);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, low_shininess);
+    
+    solidCubeWithTexture(1.);       
+    glDisable(GL_TEXTURE_2D);
+	glPopMatrix();
 }
 
 void ThreeDimensionalView::setMessage(const char * message) {
